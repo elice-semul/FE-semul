@@ -1,4 +1,4 @@
-import { Span } from '@/components/atoms';
+import { Span, Form } from '@/components/atoms';
 
 export function Home() {
   return (
@@ -14,6 +14,15 @@ export function Home() {
       >
         <div>Hello World</div>
       </Span>
+      <Form
+        onFormSubmit={() => console.log('Hello World')}
+        margin="16px"
+        padding="16px"
+        border="1px solid pink"
+        borderRadius="16px"
+      >
+        <button type="submit">Hello World</button>
+      </Form>
     </div>
   );
 }
