@@ -1,6 +1,6 @@
-import { StyledForm } from '@/components/atoms/form/styled';
+import { StyledForm } from './styled';
 
-export function Form({ children, onFormSubmit, margin, border, padding, display, width, height }) {
+const Form = ({ children, onFormSubmit, margin, border, padding, display, width, height }) => {
   if (typeof children === 'undefined') {
     return null;
   }
@@ -24,4 +24,6 @@ export function Form({ children, onFormSubmit, margin, border, padding, display,
       {children}
     </StyledForm>
   );
-}
+};
+
+export default Form;

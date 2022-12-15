@@ -1,15 +1,6 @@
-import { StyledSpan } from '@/components/atoms/span/styled';
+import { StyledSpan } from './styled';
 
-export function Span({
-  children,
-  margin,
-  padding,
-  display,
-  fontSize,
-  fontWeight,
-  color,
-  lineHeight,
-}) {
+const Span = ({ children, margin, padding, display, fontSize, fontWeight, color, lineHeight }) => {
   return (
     <StyledSpan
       {...{ margin }}
@@ -23,4 +14,6 @@ export function Span({
       {children}
     </StyledSpan>
   );
-}
+};
+
+export default Span;

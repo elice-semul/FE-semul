@@ -1,6 +1,6 @@
 import { Span, Form } from '@/components/atoms';
 
-export function Home() {
+const Home = () => {
   return (
     <div>
       <Span
@@ -26,4 +26,6 @@ export function Home() {
       </Form>
     </div>
   );
-}
+};
+
+export default Home;

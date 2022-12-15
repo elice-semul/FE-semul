@@ -1,4 +1,6 @@
-import { Form } from '@/components/atoms/form/form';
-import { Span } from '@/components/atoms/span/span';
+import Form from './form/form';
+import Image from './image/image';
+import Input from './input/input';
+import Span from './span/span';
 
-export { Span, Form };
+export { Form, Image, Input, Span };
