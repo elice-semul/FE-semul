@@ -82,5 +82,6 @@ module.exports = {
     ],
     'import/prefer-default-export': 'off',
     'no-param-reassign': 'off',
+    'react/no-unknown-property': [0],
   },
 };
