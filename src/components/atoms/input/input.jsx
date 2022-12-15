@@ -1,9 +1,17 @@
 import { StyledInput, InputType } from './styled';
 
-const Input = ({ name, value, placeholder, handleInputChange, width, height, styleType }) => {
+const Input = ({
+  name,
+  value,
+  placeholder,
+  onInputChange: handleInputChange,
+  width,
+  height,
+  styleType,
+}) => {
   return (
     <StyledInput
-      onInputChange={handleInputChange}
+      onChange={handleInputChange}
       {...{ name }}
       {...{ value }}
       {...{ placeholder }}
