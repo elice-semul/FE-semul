@@ -1,31 +1,26 @@
-import * as S from '@/components/atoms/span/styled';
+import { StyledSpan } from '@/components/atoms/span/styled';
 
-export function Span({ children, text, margin, padding, display, fontSize, color, lineHeight }) {
-  if (typeof children === 'object') {
-    return (
-      <S.Span
-        {...{ margin }}
-        {...{ padding }}
-        {...{ display }}
-        {...{ fontSize }}
-        {...{ color }}
-        {...{ lineHeight }}
-      >
-        {children}
-      </S.Span>
-    );
-  }
-
+export function Span({
+  children,
+  margin,
+  padding,
+  display,
+  fontSize,
+  fontWeight,
+  color,
+  lineHeight,
+}) {
   return (
-    <S.Span
+    <StyledSpan
       {...{ margin }}
       {...{ padding }}
       {...{ display }}
       {...{ fontSize }}
+      {...{ fontWeight }}
       {...{ color }}
       {...{ lineHeight }}
     >
-      {text}
-    </S.Span>
+      {children}
+    </StyledSpan>
   );
 }
