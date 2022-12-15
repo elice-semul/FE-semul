@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
-export const Form = styled.form`
+export const StyledForm = styled.form`
   margin: ${({ margin }) => margin};
-  padding: ${({ padding }) => padding};
   border: ${({ border }) => border};
-  border-radius: ${({ borderRadius }) => borderRadius};
+  padding: ${({ padding }) => padding};
+  display: ${({ display }) => display};
+  width: ${({ width }) => width};
+  height: ${({ height }) => height};
 `;
