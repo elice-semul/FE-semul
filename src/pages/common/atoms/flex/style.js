@@ -1,13 +1,9 @@
 import styled from 'styled-components';
 
-import { theme } from '@/styles/theme';
-
-export const StyledContainer = styled.div`
-  display: ${(props) => props.display || 'block'};
-  background-color: ${(props) => props.backGroundColor || theme.colors.background};
+export const StyledFlex = styled.div`
+  display: flex;
   width: ${(props) => props.width};
   height: ${(props) => props.height || 'auto'};
-  align-items: ${(props) => props.alignItems || 'center'};
   padding: ${(props) => props.padding || '0'};
   margin: ${(props) => props.margin || '0'};
   margin-top: ${(props) => props.mt || '0'};
@@ -18,6 +14,12 @@ export const StyledContainer = styled.div`
   padding-bottom: ${(props) => props.pb || '0'};
   padding-left: ${(props) => props.pl || '0'};
   padding-right: ${(props) => props.pr || '0'};
-  border-radius: ${(props) => props.radius || theme.containers.borderRadius};
-  box-shadow: ${(props) => (!props.shadow ? 'none' : theme.containers.shadow)};
+  border-radius: ${(props) => props.radius || props.theme.containers.borderRadius};
+  box-shadow: ${(props) => (!props.shadow ? 'none' : props.theme.containers.shadow)};
+  flex-direction: ${(props) => props.flexDirection};
+  flex-wrap: ${(props) => props.flexWrap};
+  justify-content: ${(props) => props.justifyContent}
+  align-items: ${(props) => props.alignItems}
+  align-content: ${(props) => props.alignContent}
+  gap: ${(props) => props.gap}
 `;

@@ -1,4 +1,4 @@
-import { Span, Form } from '@/components/atoms';
+import { Span, Form } from '@/pages/common/atoms';
 
 const Home = () => {
   return (
@@ -16,7 +16,7 @@ const Home = () => {
       </Span>
 
       <Form
-        onFormSubmit={() => console.log('Hello World')}
+        onFormSubmit={() => {}}
         margin="16px"
         padding="16px"
         border="1px solid pink"
