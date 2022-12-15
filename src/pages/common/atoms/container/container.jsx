@@ -1,4 +1,4 @@
-import { StyledContainer } from '@/components/atoms/container/style';
+import { StyledContainer } from '@/pages/common/atoms/container/style';
 
 const Container = ({
   children,

@@ -1,4 +1,4 @@
-import { StyledButton } from '@/components/atoms/button/style';
+import { StyledButton } from '@/pages/common/atoms/button/style';
 
 const Button = ({
   children,

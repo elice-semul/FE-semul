@@ -1,4 +1,4 @@
-import { StyledFlex } from '@/components/atoms/flex/style';
+import { StyledFlex } from '@/pages/common/atoms/flex/style';
 
 const Flex = ({
   children,
