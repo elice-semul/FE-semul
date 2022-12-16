@@ -9,14 +9,6 @@ const Container = ({
   alignItems,
   padding,
   margin,
-  mt,
-  mb,
-  ml,
-  mr,
-  pt,
-  pb,
-  pl,
-  pr,
   shadow,
   radius,
 }) => {
@@ -29,14 +21,6 @@ const Container = ({
       alignItems={alignItems}
       padding={padding}
       margin={margin}
-      mt={mt}
-      mb={mb}
-      ml={ml}
-      mr={mr}
-      pt={pt}
-      pb={pb}
-      pl={pl}
-      pr={pr}
       shadow={shadow}
       radius={radius}
     >
