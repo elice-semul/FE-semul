@@ -23,5 +23,5 @@ export const StyledContainer = styled.div`
   padding: ${(props) => props.padding || '0'};
   margin: ${(props) => props.margin || '0'};
   border-radius: ${(props) => props.radius || props.theme.containers.borderRadius};
-  ${(props) => shadow(props)}'
+  ${(props) => shadow(props)};
 `;

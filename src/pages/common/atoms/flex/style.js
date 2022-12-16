@@ -27,5 +27,5 @@ export const StyledFlex = styled.div`
   align-items: ${(props) => props.alignItems};
   align-content: ${(props) => props.alignContent};
   gap: ${(props) => props.gap};
-  ${(props) => shadow(props)}'
+  ${(props) => shadow(props)};
 `;
