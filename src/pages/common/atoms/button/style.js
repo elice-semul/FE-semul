@@ -17,14 +17,14 @@ const radius = (option) => {
 };
 
 export const StyledButton = styled.button`
-background-color: ${(props) => props.backGroundColor || theme.colors.background};
-color: ${(props) => props.color || theme.colors.black};
-padding: ${(props) => props.padding || theme.buttons.padding}
-margin: ${(props) => props.margin || theme.buttons.margin}
-height: ${(props) => props.height};
-width: ${(props) => props.width};
-box-shadow:${(props) => (!props.shadow ? 'none' : theme.buttons.shadow)};
-border: ${theme.buttons.border};
-text-align: center;
-${(props) => radius(props.radius)}
+  background-color: ${(props) => props.backGroundColor || theme.colors.background};
+  color: ${(props) => props.color || theme.colors.black};
+  padding: ${(props) => props.padding || theme.buttons.padding};
+  margin: ${(props) => props.margin || theme.buttons.margin};
+  height: ${(props) => props.height};
+  width: ${(props) => props.width};
+  box-shadow: ${(props) => (!props.shadow ? 'none' : theme.buttons.shadow)};
+  border: ${theme.buttons.border};
+  text-align: center;
+  ${(props) => radius(props.radius)};
 `;
