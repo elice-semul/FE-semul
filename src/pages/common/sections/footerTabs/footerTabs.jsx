@@ -40,9 +40,7 @@ const mock = [
   },
 ];
 
-const mapedMock = mock.map(({ idle, hover, text }, index) => (
-  <FooterTab key={index} {...{ idle }} {...{ hover }} {...{ text }} />
-));
+const mapedMock = mock.map(({ ...props }, index) => <FooterTab key={index} {...props} />);
 
 const FooterTabs = () => {
   return mapedMock;

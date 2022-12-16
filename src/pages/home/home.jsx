@@ -1,7 +1,5 @@
-import { Footer } from '@/pages/common/sections';
-
 const Home = () => {
-  return <Footer />;
+  return <div>Home</div>;
 };
 
 export default Home;
