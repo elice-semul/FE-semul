@@ -6,14 +6,6 @@ const Flex = ({
   height,
   padding,
   margin,
-  mt,
-  mb,
-  ml,
-  mr,
-  pt,
-  pb,
-  pl,
-  pr,
   shadow,
   radius,
   flexDirection,
@@ -29,14 +21,6 @@ const Flex = ({
       height={height}
       padding={padding}
       margin={margin}
-      mt={mt}
-      mb={mb}
-      ml={ml}
-      mr={mr}
-      pt={pt}
-      pb={pb}
-      pl={pl}
-      pr={pr}
       shadow={shadow}
       radius={radius}
       flexDirection={flexDirection}
