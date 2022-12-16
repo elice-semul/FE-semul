@@ -6,6 +6,6 @@ export const StyledSpan = styled.span`
   display: ${({ display }) => display};
   font-size: ${({ fontSize }) => fontSize};
   font-weight: ${({ fontWeight }) => fontWeight};
-  color: ${({ color }) => color};
+  color: ${({ theme: { colors }, color }) => colors[color]};
   line-height: ${({ lineHeight }) => lineHeight};
 `;
