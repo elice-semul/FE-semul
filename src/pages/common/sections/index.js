@@ -1,3 +1,3 @@
-import FooterTabs from './footerTabs/footerTabs';
+import FooterTabs from '@/pages/common/sections/footerTabs';
 
 export { FooterTabs };
