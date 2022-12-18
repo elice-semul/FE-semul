@@ -23,6 +23,8 @@ export const StyledButton = styled.button`
   margin: ${(props) => props.margin || theme.buttons.margin};
   height: ${(props) => props.height};
   width: ${(props) => props.width};
+  font-size: ${(props) => props.fontSize};
+  font-weight: ${(props) => props.fontWeight};
   box-shadow: ${(props) => (!props.shadow ? 'none' : theme.buttons.shadow)};
   border: ${theme.buttons.border};
   text-align: center;

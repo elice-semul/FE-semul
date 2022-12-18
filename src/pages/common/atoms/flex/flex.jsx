@@ -2,6 +2,7 @@ import { StyledFlex } from '@/pages/common/atoms/flex/style';
 
 const Flex = ({
   children,
+  position,
   width,
   height,
   padding,
@@ -17,6 +18,7 @@ const Flex = ({
 }) => {
   return (
     <StyledFlex
+      position={position}
       width={width}
       height={height}
       padding={padding}
