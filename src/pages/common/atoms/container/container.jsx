@@ -3,6 +3,7 @@ import { StyledContainer } from '@/pages/common/atoms/container/style';
 const Container = ({
   children,
   display,
+  position,
   backGroundColor,
   width,
   height,
@@ -15,6 +16,7 @@ const Container = ({
   return (
     <StyledContainer
       display={display}
+      position={position}
       backGroundColor={backGroundColor}
       width={width}
       height={height}

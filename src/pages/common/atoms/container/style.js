@@ -16,6 +16,7 @@ const shadow = (option) => {
 
 export const StyledContainer = styled.div`
   display: ${(props) => props.display || 'block'};
+  position: ${(props) => props.position};
   background-color: ${(props) => props.backGroundColor || props.theme.colors.background};
   width: ${(props) => props.width};
   height: ${(props) => props.height || 'auto'};

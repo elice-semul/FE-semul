@@ -9,6 +9,8 @@ const Button = ({
   margin,
   height,
   width,
+  fontSize,
+  fontWeight,
   shadow,
   radius,
 }) => {
@@ -21,6 +23,8 @@ const Button = ({
       width={width}
       padding={padding}
       margin={margin}
+      fontSize={fontSize}
+      fontWeight={fontWeight}
       shadow={shadow}
       radius={radius}
     >

@@ -16,6 +16,7 @@ const shadow = (option) => {
 
 export const StyledFlex = styled.div`
   display: flex;
+  position: ${(props) => props.position};
   width: ${(props) => props.width};
   height: ${(props) => props.height || 'auto'};
   padding: ${(props) => props.padding || '0'};
