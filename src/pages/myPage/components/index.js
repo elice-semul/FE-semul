@@ -1,3 +1,3 @@
-import Typographys from './typographys/typographys';
+import MyPageTypographys from './myPageTypographys/myPageTypographys';
 
-export { Typographys };
+export { MyPageTypographys };
