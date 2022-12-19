@@ -6,12 +6,17 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
+import { worker } from './mocks/browser';
+
 import { Router } from '@/router';
 import { store } from '@/store/';
 import { GlobalStyle } from '@/styles/globalstyle';
 import { theme } from '@/styles/theme';
-
 const queryClient = new QueryClient();
+
+if (process.env.NODE_ENV === 'development') {
+  worker.start();
+}
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

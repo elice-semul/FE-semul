@@ -8,6 +8,7 @@ export const StyledWashBlockContainer = styled.div`
   border-radius: 20px;
   display: flex;
   padding: 15px 20px;
+  margin-top: 20px;
 `;
 
 export const StyledWashImage = styled.img`

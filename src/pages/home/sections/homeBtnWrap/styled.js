@@ -5,6 +5,7 @@ export const StyledHomeBtnWrap = styled.div`
   flex-flow: column;
   margin: 15px;
   margin-top: 30px;
+  white-space: pre-line;
 `;
 
 export const StyledHomeBtnContainter = styled.div`

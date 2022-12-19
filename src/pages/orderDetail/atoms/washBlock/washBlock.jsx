@@ -6,15 +6,15 @@ import {
   StyledWashNameText,
   StyledCheckIcon,
 } from './styled';
-const WashBlock = () => {
+const WashBlock = ({ url, id, name, isCompleted }) => {
   return (
     <StyledWashBlockContainer>
-      <StyledWashImage src="../src/assets/images/clothThumbnail-1.jpeg" />
+      <StyledWashImage src={url} />
       <StyledWashBlockTextContainer>
-        <StyledWashIdText>빨래번호: 000000111</StyledWashIdText>
-        <StyledWashNameText>일반 패딩</StyledWashNameText>
+        <StyledWashIdText>빨래번호: {id}</StyledWashIdText>
+        <StyledWashNameText>{name}</StyledWashNameText>
       </StyledWashBlockTextContainer>
-      <StyledCheckIcon />
+      {isCompleted && <StyledCheckIcon />}
     </StyledWashBlockContainer>
   );
 };
