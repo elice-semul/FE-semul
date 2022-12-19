@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { StyledContainer } from './styled';
 
 import { Flex, Span } from '@/pages/common/atoms';
 
-const FooterTab = ({ idle, hover, text }) => {
+const FooterTab = ({ idle, hover, text, path }) => {
+  const navigate = useNavigate();
   const [isIconOver, setIsIconOver] = useState(false);
 
   const handleTabOver = () => {
@@ -15,8 +17,12 @@ const FooterTab = ({ idle, hover, text }) => {
     setIsIconOver(false);
   };
 
+  const handleTabClick = () => {
+    navigate(path);
+  };
+
   return (
-    <StyledContainer onMouseOver={handleTabOver} onMouseOut={handleTabOut}>
+    <StyledContainer onMouseOver={handleTabOver} onMouseOut={handleTabOut} onClick={handleTabClick}>
       <Flex width="7rem" flexDirection="column" justifyContent="center" alignItems="center">
         {isIconOver ? <div>{hover}</div> : <div>{idle}</div>}
         <Span

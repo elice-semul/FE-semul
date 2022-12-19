@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom';
 
 import { StyledContainer } from './styled';
 
-import { Footer } from '@/pages/common/components';
 import { MyPageTypographys } from '@/pages/myPage/components';
 import { MyPageMenu } from '@/pages/myPage/sections';
 
@@ -23,13 +22,10 @@ const MyPage = () => {
   };
 
   return (
-    <>
-      <StyledContainer>
-        <MyPageTypographys />
-        <MyPageMenu onMenuClick={handleMenuClick} />
-      </StyledContainer>
-      <Footer />
-    </>
+    <StyledContainer>
+      <MyPageTypographys />
+      <MyPageMenu onMenuClick={handleMenuClick} />
+    </StyledContainer>
   );
 };
 
