@@ -8,7 +8,7 @@ import { ThemeProvider } from 'styled-components';
 
 import { worker } from './mocks/browser';
 
-import { App } from '@/App';
+import { Router } from '@/router';
 import { store } from '@/store/';
 import { GlobalStyle } from '@/styles/globalstyle';
 import { theme } from '@/styles/theme';
@@ -25,7 +25,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <ThemeProvider {...{ theme }}>
           <GlobalStyle />
           <BrowserRouter>
-            <App />
+            <Router />
           </BrowserRouter>
         </ThemeProvider>
         <ReactQueryDevtools initialIsOpen={false} />
