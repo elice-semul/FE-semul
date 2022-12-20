@@ -6,7 +6,7 @@ import { Home, MyPage, Wallet, OrderDetail, Login, SignUp, Price } from '@/pages
 export function Router() {
   return (
     <Routes>
-      <Route path="/" element={<App />} />
+      <Route path="/" element={<App />} >
       <Route index element={<Home />} />
       <Route path="/order/:id" element={<OrderDetail />} />
       <Route path="/myPage" element={<MyPage />} />
@@ -14,6 +14,7 @@ export function Router() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/price" element={<Price />} />
+      </Route>
     </Routes>
   );
 }
