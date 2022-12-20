@@ -8,6 +8,7 @@ const Input = ({
   width,
   height,
   styleType,
+  type,
 }) => {
   return (
     <StyledInput
@@ -18,6 +19,7 @@ const Input = ({
       {...{ styleType }}
       {...{ width }}
       {...{ height }}
+      {...{ type }}
     />
   );
 };

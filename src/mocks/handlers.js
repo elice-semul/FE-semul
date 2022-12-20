@@ -594,4 +594,47 @@ export const handlers = [
       })
     );
   }),
+  rest.get('/products', (req, res, ctx) => {
+    return res(
+      ctx.json({      
+        produceList: [
+          {
+            name : '와이셔츠',
+            price: 12000, 
+            category: 1,
+          },
+          {
+            name : '가죽바지',
+            price: 10000, 
+            category: 5,
+          },
+          {
+            name : '운동화',
+            price: 6000, 
+            category: 4,
+          },
+          {
+            name : '일반이불',
+            price: 82000, 
+            category: 3,
+          },
+          {
+            name : '카페트',
+            price: 39000, 
+            category: 2,
+          },
+          {
+            name : '생활빨래',
+            price: 10800, 
+            category: 2,
+          },
+          {
+            name : '블라우스',
+            price: 22000, 
+            category: 1,
+          }
+        ],
+      })
+      )
+  }),
 ];
