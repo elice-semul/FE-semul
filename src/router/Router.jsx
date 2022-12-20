@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { App } from '@/App';
 import { Home, MyPage, Wallet, OrderDetail } from '@/pages';
 
-export function Router() {
+function Router() {
   return (
     <Routes>
       <Route path="/" element={<App />}>
@@ -15,3 +15,5 @@ export function Router() {
     </Routes>
   );
 }
+
+export default Router;

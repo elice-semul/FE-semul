@@ -1,6 +1,6 @@
 import { Typography } from '@/pages/common/sections';
 
-const MyPageTypographys = () => {
+const MyPageTypographys = ({ money }) => {
   return (
     <>
       <Typography text="새물님 안녕하세요." strongText="새물" />
@@ -10,8 +10,8 @@ const MyPageTypographys = () => {
         divStyle={{ fontWeight: '600', fontSize: '2.4rem', lineHeight: '2.9rem' }}
       />
       <Typography
-        text={`${(1234567).toLocaleString()}원 입니다.`}
-        strongText={(1234567).toLocaleString()}
+        text={`${money}원 입니다.`}
+        strongText={money}
         divStyle={{
           margin: '1.6rem 0 0',
           fontWeight: '600',

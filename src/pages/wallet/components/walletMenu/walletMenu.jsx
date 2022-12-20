@@ -1,4 +1,7 @@
+import { useState } from 'react';
+
 import { Container } from '@/pages/common/atoms';
+import PortalModal from '@/pages/common/pages/portalModal/portalModal';
 import { WalletPrice } from '@/pages/wallet/sections';
 
 const mock = [
@@ -16,10 +19,46 @@ const mock = [
   },
 ];
 
-const mapedMock = mock.map(({ ...props }, index) => <WalletPrice key={index} {...props} />);
-
 const WalletMenu = () => {
-  return <Container margin="3.2rem 0 9.6rem">{mapedMock}</Container>;
+  const [isModalShowing, setIsModalShowing] = useState(false);
+  const [modalText, setModalText] = useState('');
+
+  const handleMenuClick = (text) => {
+    setIsModalShowing(true);
+    setModalText(text);
+  };
+
+  const handleConfirmClick = () => {};
+
+  const handleCancelClick = () => {
+    setIsModalShowing(false);
+  };
+
+  const handleSuccessClick = () => {
+    setIsModalShowing(false);
+  };
+
+  const mapedMock = mock.map(({ strongText, ...props }, index) => (
+    <div key={index} onClick={() => handleMenuClick(strongText)}>
+      <WalletPrice {...{ strongText }} {...props} />
+    </div>
+  ));
+
+  return (
+    <Container margin="3.2rem 0 9.6rem">
+      {mapedMock}
+      {isModalShowing && (
+        <PortalModal
+          text={`${modalText}만원 충전 하시겠습니까?`}
+          successText="충전 완료!"
+          onShow={setIsModalShowing}
+          onConfirm={handleConfirmClick}
+          onCancel={handleCancelClick}
+          onSuccess={handleSuccessClick}
+        />
+      )}
+    </Container>
+  );
 };
 
 export default WalletMenu;

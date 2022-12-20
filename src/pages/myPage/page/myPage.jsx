@@ -13,17 +13,18 @@ export const MENU_STATUS = {
 };
 
 const MyPage = () => {
+  const money = (1234567).toLocaleString();
   const navigate = useNavigate();
 
   const handleMenuClick = (type) => {
     if (type === MENU_STATUS.WALLET) {
-      navigate('/wallet');
+      navigate('/wallet', { state: money });
     }
   };
 
   return (
     <StyledContainer>
-      <MyPageTypographys />
+      <MyPageTypographys {...{ money }} />
       <MyPageMenu onMenuClick={handleMenuClick} />
     </StyledContainer>
   );
