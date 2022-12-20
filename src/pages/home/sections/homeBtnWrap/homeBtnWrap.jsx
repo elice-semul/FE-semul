@@ -6,13 +6,13 @@ const homeBtnData = [
     id: 1,
     url: 'src/assets/images/homeBtnImage-2.jpg',
     title: '세탁 가격',
-    paragraph: `부담은 줄인\n세탁 가격`,
+    paragraph: `합리적인\n세탁 가격`,
   },
   {
     id: 2,
     url: 'src/assets/images/homeBtnImage-1.jpg',
     title: '세탁 신청',
-    paragraph: `믿고 맡기는\n우리동네 세탁소`,
+    paragraph: `전문적인\n동네 세탁소`,
   },
 ];
 

@@ -5,28 +5,34 @@ import {
   StyledOrderCreatedDateText,
   StyledArrowDownIcon,
   StyledCurrentLaundryBlockContainer,
+  NonStyledBtnContainer,
 } from './styled';
 
 import { OrderStatusTagBlock, OrderImageSummaryBlock } from '@/pages/common/atoms';
 
 const CurrentLaundryBlock = ({ currentOrder }) => {
   const [isClicked, setIsClicked] = useState(false);
+
   const handleBlockClick = () => {
     setIsClicked((prev) => !prev);
   };
   return (
-    <StyledCurrentLaundryBlockContainer onClick={handleBlockClick}>
-      <StyledTextLayoutContainer>
-        <StyledOrderCreatedDateText>{currentOrder.date}</StyledOrderCreatedDateText>
-        <StyledArrowDownIcon />
-      </StyledTextLayoutContainer>
-      <OrderStatusTagBlock
-        prevCompleted={currentOrder.prevCompleted}
-        prevText={currentOrder.prevText}
-        nextCompleted={currentOrder.nextCompleted}
-        nextText={currentOrder.nextText}
-      />
-      {isClicked && <OrderImageSummaryBlock />}
+    <StyledCurrentLaundryBlockContainer>
+      <NonStyledBtnContainer onClick={handleBlockClick}>
+        <StyledTextLayoutContainer>
+          <StyledOrderCreatedDateText>{`주문번호: ${currentOrder.id} | ${currentOrder.pickUpDateTime}`}</StyledOrderCreatedDateText>
+          <StyledArrowDownIcon />
+        </StyledTextLayoutContainer>
+        <OrderStatusTagBlock orderStatus={currentOrder.status} />
+      </NonStyledBtnContainer>
+
+      {isClicked && (
+        <OrderImageSummaryBlock
+          key={currentOrder.id}
+          orderId={currentOrder.id}
+          products={currentOrder.orderProduct}
+        />
+      )}
     </StyledCurrentLaundryBlockContainer>
   );
 };

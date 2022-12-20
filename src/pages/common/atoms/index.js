@@ -6,6 +6,7 @@ import FooterTab from './footerTab/footerTab';
 import Form from './form/form';
 import Image from './image/image';
 import Input from './input/input';
+import Label from './label/label';
 import OrderImageSummaryBlock from './orderImageSummaryBlock/orderImageSummaryBlock';
 import OrderStatusTagBlock from './orderStatusTagBlock/orderStatusTagBlock';
 import P from './p/p';
@@ -24,4 +25,5 @@ export {
   P,
   FooterTab,
   Div,
+  Label
 };

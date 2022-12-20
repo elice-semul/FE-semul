@@ -3,14 +3,14 @@ import styled, { css } from 'styled-components';
 
 export const StyledOrderStatusTagContainer = styled.div`
   display: flex;
-  width: 62.7vw;
+  width: 70%;
   height: 3.9vh;
   justify-content: space-between;
   align-items: center;
 `;
 
 export const StyledOrderStatusTag = styled.div`
-  width: 27.2vw;
+  width: 43%;
   height: 100%;
   background-color: ${(props) => props.theme.colors.gray200};
   border-radius: 20px;
