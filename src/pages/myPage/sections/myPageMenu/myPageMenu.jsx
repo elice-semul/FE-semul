@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { FiUserX, FiUser, FiLogOut } from 'react-icons/fi';
 import { IoWalletOutline } from 'react-icons/io5';
 
+import { PortalModal } from '@/pages/common/pages';
 import { Ul, Li } from '@/pages/myPage/atoms';
 
 const mock = [
@@ -11,11 +13,45 @@ const mock = [
 ];
 
 const MyPageMenu = ({ onMenuClick }) => {
-  const mapedMock = mock.map(({ ...props }, index) => (
-    <Li key={index} {...props} {...{ onMenuClick }} />
+  const [isModalShowing, setIsModalShowing] = useState(false);
+  const [modalText, setModalText] = useState('');
+
+  const handleMenuClick = (text) => {
+    setIsModalShowing(true);
+    setModalText(text);
+  };
+
+  const handleConfirmClick = () => {};
+
+  const handleCancelClick = () => {
+    setIsModalShowing(false);
+  };
+
+  const handleSuccessClick = () => {
+    setIsModalShowing(false);
+  };
+
+  const mapedMock = mock.map(({ text, ...props }, index) => (
+    <div key={index} onClick={() => handleMenuClick(text)}>
+      <Li key={index} {...{ text }} {...props} {...{ onMenuClick }} />
+    </div>
   ));
 
-  return <Ul>{mapedMock}</Ul>;
+  return (
+    <Ul>
+      {mapedMock}
+      {isModalShowing && (
+        <PortalModal
+          text={`${modalText} 하시겠습니까?`}
+          successText={`${modalText} 완료!`}
+          onShow={setIsModalShowing}
+          onConfirm={handleConfirmClick}
+          onCancel={handleCancelClick}
+          onSuccess={handleSuccessClick}
+        />
+      )}
+    </Ul>
+  );
 };
 
 export default MyPageMenu;
