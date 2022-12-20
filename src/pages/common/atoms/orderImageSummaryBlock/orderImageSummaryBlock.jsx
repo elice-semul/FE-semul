@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import {
   StyledOrderImageSummaryContainer,
@@ -8,17 +8,25 @@ import {
   StyledOrderSummaryImage,
 } from './styled';
 
-const OrderImageSummaryBlock = () => {
+import { calculateEstimatedPrice } from '@/utils/calculateEstimatedPrice';
+
+const OrderImageSummaryBlock = ({ orderId, products }) => {
+  const navigate = useNavigate();
+  const handleSummaryClick = (id) => {
+    navigate(`/order/${id}`);
+  };
   return (
-    // <Link to="/">
-    <StyledOrderImageSummaryContainer>
+    <StyledOrderImageSummaryContainer onClick={() => handleSummaryClick(orderId)}>
       <StyledOrderImageSummaryTextContainer>
-        <StyledOrderImageSummaryText>일반 패딩 외 총 5건</StyledOrderImageSummaryText>
-        <StyledOrderImageSummaryPrice>예상 금액: 30,000원</StyledOrderImageSummaryPrice>
+        <StyledOrderImageSummaryText>
+          {products[0].productName} 포함 총 {products.length}건
+        </StyledOrderImageSummaryText>
+        <StyledOrderImageSummaryPrice>
+          예상 금액: {calculateEstimatedPrice(products)}원
+        </StyledOrderImageSummaryPrice>
       </StyledOrderImageSummaryTextContainer>
       <StyledOrderSummaryImage src="src/assets/images/clothThumbnail-1.jpeg" />
     </StyledOrderImageSummaryContainer>
-    // </Link>
   );
 };
 

@@ -1,15 +1,16 @@
 import { FaCaretDown } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { StyledHomeHeaderTextBlock, StyledHomeHeaderText } from './styled';
 
 const HomeHeaderText = ({ address }) => {
+  const navigate = useNavigate();
+  const headerText = address || '로그인';
+  const handleTextBlockClick = () => (address ? navigate('/') : navigate('/login'));
   return (
-    <StyledHomeHeaderTextBlock>
-      {/* <Link> */}
+    <StyledHomeHeaderTextBlock onClick={handleTextBlockClick}>
       <StyledHomeHeaderText>{address || '로그인'}</StyledHomeHeaderText>
       <FaCaretDown className="caretDownIcon" />
-      {/* </Link> */}
     </StyledHomeHeaderTextBlock>
   );
 };

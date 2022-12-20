@@ -5,7 +5,13 @@ import {
   StyledArrowIcon,
 } from './styled';
 
-const OrderStatusTagBlock = ({ prevCompleted, prevText, nextCompleted, nextText }) => {
+import { getOrderStatusTagProps } from '@/utils/getOrderStatusTagProps';
+
+const OrderStatusTagBlock = ({ orderStatus, renderingStatus }) => {
+  const { prevCompleted, prevText, nextCompleted, nextText } = getOrderStatusTagProps(
+    orderStatus,
+    renderingStatus
+  );
   return (
     <StyledOrderStatusTagContainer>
       <StyledOrderStatusTag isCompleted={prevCompleted}>
