@@ -10,6 +10,7 @@ import Label from './label/label';
 import OrderImageSummaryBlock from './orderImageSummaryBlock/orderImageSummaryBlock';
 import OrderStatusTagBlock from './orderStatusTagBlock/orderStatusTagBlock';
 import P from './p/p';
+import Select from './select/select';
 import Span from './span/span';
 
 export {
@@ -25,5 +26,6 @@ export {
   P,
   FooterTab,
   Div,
-  Label
+  Label,
+  Select,
 };

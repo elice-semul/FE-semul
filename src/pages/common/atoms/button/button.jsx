@@ -3,6 +3,7 @@ import { StyledButton } from '@/pages/common/atoms/button/style';
 const Button = ({
   children,
   onBtnClick: handleBtnClick,
+  type,
   backGroundColor,
   color,
   padding,
@@ -18,6 +19,7 @@ const Button = ({
     <StyledButton
       onClick={handleBtnClick}
       backGroundColor={backGroundColor}
+      type={type}
       color={color}
       height={height}
       width={width}

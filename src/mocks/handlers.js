@@ -1,5 +1,94 @@
 import { rest } from 'msw';
 export const handlers = [
+  rest.post('/mock/orders', (req, res, ctx) => {
+    return res(
+      ctx.json({
+        req,
+      })
+    );
+  }),
+  rest.get('/mock/products', (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.delay(500),
+      ctx.json({
+        result: [
+          {
+            productId: 1,
+            productName: '와이셔츠, 셔츠, 교복셔츠',
+            price: 1900,
+            category: 'clothing',
+          },
+          {
+            productId: 2,
+            productName: '블라우스',
+            price: 4000,
+            category: 'clothing',
+          },
+          {
+            productId: 3,
+            productName: '티셔츠, 맨투맨',
+            price: 4000,
+            category: 'clothing',
+          },
+          {
+            productId: 4,
+            productName: '후드티',
+            price: 4000,
+            category: 'clothing',
+          },
+          {
+            productId: 5,
+            productName: '생활빨래 (30L)',
+            price: 10800,
+            category: 'living',
+          },
+          {
+            productId: 6,
+            productName: '카페트 (단모)',
+            price: 50000,
+            category: 'living',
+          },
+          {
+            productId: 7,
+            productName: '커튼',
+            price: 17000,
+            category: 'living',
+          },
+          {
+            productId: 8,
+            productName: '쇼파커버',
+            price: 15000,
+            category: 'living',
+          },
+          {
+            productId: 9,
+            productName: '운동화',
+            price: 6000,
+            category: 'shoes',
+          },
+          {
+            productId: 10,
+            productName: '구두, 로퍼',
+            price: 7000,
+            category: 'shoes',
+          },
+          {
+            productId: 11,
+            productName: '부츠',
+            price: 15000,
+            category: 'shoes',
+          },
+          {
+            productId: 12,
+            productName: '어그부츠',
+            price: 20000,
+            category: 'shoes',
+          },
+        ],
+      })
+    );
+  }),
   rest.get('/mock/orders', (req, res, ctx) => {
     return res(
       ctx.status(200),
@@ -596,45 +685,45 @@ export const handlers = [
   }),
   rest.get('/products', (req, res, ctx) => {
     return res(
-      ctx.json({      
+      ctx.json({
         produceList: [
           {
-            name : '와이셔츠',
-            price: 12000, 
+            name: '와이셔츠',
+            price: 12000,
             category: 1,
           },
           {
-            name : '가죽바지',
-            price: 10000, 
+            name: '가죽바지',
+            price: 10000,
             category: 5,
           },
           {
-            name : '운동화',
-            price: 6000, 
+            name: '운동화',
+            price: 6000,
             category: 4,
           },
           {
-            name : '일반이불',
-            price: 82000, 
+            name: '일반이불',
+            price: 82000,
             category: 3,
           },
           {
-            name : '카페트',
-            price: 39000, 
+            name: '카페트',
+            price: 39000,
             category: 2,
           },
           {
-            name : '생활빨래',
-            price: 10800, 
+            name: '생활빨래',
+            price: 10800,
             category: 2,
           },
           {
-            name : '블라우스',
-            price: 22000, 
+            name: '블라우스',
+            price: 22000,
             category: 1,
-          }
+          },
         ],
       })
-      )
+    );
   }),
 ];
