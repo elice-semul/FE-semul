@@ -1,5 +1,5 @@
 import { Flex, Span } from '@/pages/common/atoms/index';
-
+import { theme } from '@/styles/theme';
 const FlexedSpan = ({
   infomationTitle,
   infomationContent,
@@ -11,11 +11,11 @@ const FlexedSpan = ({
 }) => {
   return (
     <Flex justifyContent="space-between" flexDirection={flexDirection} margin={margin || '8px 5px'}>
-      <Span fontSize="15px" fontWeight="normal">
+      <Span fontSize="15px" fontWeight="normal" color="black">
         {infomationTitle}
       </Span>
       <Span
-        color={contentColor}
+        color={contentColor || 'black'}
         fontSize={contentSize || '15px'}
         fontWeight={contentWeight}
         margin={flexDirection === 'column' ? '15px 0' : '0'}

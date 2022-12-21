@@ -7,25 +7,25 @@ import { Container } from '@/pages/common/atoms/index';
 
 const OrderComplete = () => {
   return (
-    <Test>
-      <Container
-        radius="20px"
-        height="780px"
-        width="86%"
-        shadow="0px 4px 8px 0px gray"
-        padding="0 0 0 50px"
-      >
+    <Container
+      radius="20px"
+      height="780px"
+      width="86%"
+      shadow="0px 4px 8px 0px gray"
+      margin="5% auto"
+    >
+      <Container padding="30% 0 0 0">
         <CompleteCode />
-        <Container padding="0 0 0 50px">
-          <Infomation />
-        </Container>
       </Container>
-    </Test>
+      <Container padding="0 5%">
+        <Infomation />
+      </Container>
+    </Container>
   );
 };
 
 const Test = styled(Container)`
   position: relative;
-  padding: 50px;
+  padding: 20px;
 `;
 export default OrderComplete;

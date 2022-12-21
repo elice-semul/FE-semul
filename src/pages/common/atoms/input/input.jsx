@@ -1,5 +1,6 @@
-import { StyledInput, InputType } from './styled';
+import React from 'react';
 
+import { StyledInput, InputType } from './styled';
 const Input = ({
   name,
   value,
@@ -9,7 +10,24 @@ const Input = ({
   height,
   styleType,
   type,
+  register,
+  registerName,
 }) => {
+  if (register && registerName) {
+    return (
+      <StyledInput
+        onChange={handleInputChange}
+        {...{ name }}
+        {...{ value }}
+        {...{ placeholder }}
+        {...{ styleType }}
+        {...{ width }}
+        {...{ height }}
+        {...{ type }}
+        {...register(registerName, { require: '필수값을 확인하세요' })}
+      />
+    );
+  }
   return (
     <StyledInput
       onChange={handleInputChange}
@@ -23,7 +41,6 @@ const Input = ({
     />
   );
 };
-
 Input.defaultProps = {
   styleType: InputType.DEFAULT,
 };

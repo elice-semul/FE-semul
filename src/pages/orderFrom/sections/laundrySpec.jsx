@@ -1,20 +1,48 @@
-import { AiOutlineClose, AiOutlinePlus } from 'react-icons/ai';
+import { AiOutlinePlus } from 'react-icons/ai';
 import styled from 'styled-components';
 
+import LabeledInput from '../atoms/labeledInput';
 import LabeledInputAndSelect from '../atoms/labeledInputAndSelect';
+import AutoComplete from './autoComplete';
 
 import { Flex, Button } from '@/pages/common/atoms/index';
 
-const LaundrySpec = () => {
+const LaundrySpec = ({
+  options,
+  register,
+  registerName,
+  quantityRegister,
+  quantityRegisterName,
+  onPlusBtnClick,
+  inputValue,
+  setInputValue,
+}) => {
   return (
     <Flex position="relative" alignItems="flex-end">
-      <StyledSelect labelContent="세탁물규격" width="53%" options={['와이셔츠', '코드', '신발']} />
-      <StyledSelect width="23%" options={['1개', '2개', '3개']} />
+      <AutoComplete
+        labelContent="세탁물규격"
+        width="61%"
+        options={options}
+        register={register}
+        registerName={registerName}
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+      />
+      <LabeledInput
+        width="15%"
+        placeholder="1"
+        register={quantityRegister}
+        registerName={quantityRegisterName}
+        inputType="number"
+      />
       <StyledBtnContainer>
-        <Button width="40px" height="40px" padding="0px 4px 4px 0px">
-          <AiOutlineClose size="24" color="red" />
-        </Button>
-        <Button width="40px" height="40px" padding="0px 4px 4px 0px">
+        <Button
+          type="button"
+          onBtnClick={onPlusBtnClick}
+          width="40px"
+          height="40px"
+          padding="0px 4px 4px 0px"
+        >
           <AiOutlinePlus size="24" />
         </Button>
       </StyledBtnContainer>
@@ -26,10 +54,5 @@ const StyledBtnContainer = styled.div`
   position: absolute;
   bottom: 10px;
   right: 10px;
-`;
-
-const StyledSelect = styled(LabeledInputAndSelect)`
-  border: none;
-  width: auto;
 `;
 export default LaundrySpec;
