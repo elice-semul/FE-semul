@@ -8,11 +8,11 @@ export const StyledWashBlockContainer = styled.div`
   border-radius: 20px;
   display: flex;
   padding: 15px 20px;
-  margin-top: 20px;
+  margin-bottom: 10px;
 `;
 
 export const StyledWashImage = styled.img`
-  width: 15.9vw;
+  width: 30%;
   height: 6.8359vh;
   border: 1px solid ${(props) => props.theme.colors.black};
   border-radius: 10px;

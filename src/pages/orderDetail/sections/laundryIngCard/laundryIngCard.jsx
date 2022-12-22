@@ -1,24 +1,24 @@
 import { OrderDetailCardContainer, WashBlock } from '../../atoms';
 
-import { ORDER_STATUS } from '@/utils/orderStatus';
-
-const LaundryIngCard = ({ washData, estimatedTime }) => {
+const LaundryIngCard = ({ order, renderingStatus, setRenderingStatus }) => {
   return (
     <OrderDetailCardContainer
-      date="2022년 12월 13일 화요일"
-      orderStatus={ORDER_STATUS.LAUNDRY}
-      lineOneTitle="000 세탁소에서"
-      lineOneStrongText="000 세탁소"
+      date={order.pickUpDateTime}
+      orderStatus={order.status}
+      lineOneTitle={`${order.laundry.name} 세탁소`}
+      lineOneStrongText={order.laundry.name}
       lineTwoTitle="세탁 중입니다."
-      description={`예상 세탁 완료 일시\n${estimatedTime}`}
+      description={`희망 세탁 완료 일시: ${order.wishLaundryDateTime}\n예상 세탁 완료 일시: ${order.wishLaundryDateTime}`}
+      {...{ order }}
+      {...{ renderingStatus }}
+      {...{ setRenderingStatus }}
     >
-      {washData.map((wash) => (
+      {order.orderProduct.map((wash) => (
         <WashBlock
-          key={wash.id}
-          url={wash.url}
-          id={wash.ud}
-          name={wash.name}
-          isCompleted={wash.isCompleted}
+          key={wash.productId}
+          id={wash.productId}
+          name={wash.productName}
+          qty={wash.qty}
         />
       ))}
     </OrderDetailCardContainer>

@@ -1,16 +1,17 @@
+import { IoArrowBackOutline, IoArrowForwardOutline } from 'react-icons/io5';
 import styled from 'styled-components';
-
-import { Typography } from '@/pages/common/sections';
 
 export const StyledOrderDetailCardContainer = styled.div`
   width: 100%;
-  height: 62.1vh;
+  min-height: 55vh;
   display: flex;
   flex-flow: column;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
-  padding: 35px 50px;
+  padding: 50px;
   white-space: pre-line;
+  position: relative;
+  overflow: scroll;
 `;
 
 export const StyledOrderCardDateText = styled.span`
@@ -19,14 +20,32 @@ export const StyledOrderCardDateText = styled.span`
 `;
 
 export const SecondLineTypography = styled.div`
-  margin-top: 0;
+  margin-bottom: 10px;
   font-size: 3.2rem;
   font-weight: 700;
   line-height: 3.9rem;
 `;
 
 export const StyledOrderDetailDescription = styled.p`
-  margin-top: 16px;
+  margin-bottom: 20px;
   font-size: 16px;
   line-height: 19.36px;
+`;
+
+export const StyledIconBtnWrap = styled.div`
+  position: absolute;
+  display: flex;
+  gap: 20px;
+  right: 50px;
+  color: ${(props) => props.theme.colors.headline};
+`;
+
+export const StyledLeftIcon = styled(IoArrowBackOutline)`
+  font-size: 20px;
+  cursor: pointer;
+`;
+
+export const StyledRightIcon = styled(IoArrowForwardOutline)`
+  font-size: 20px;
+  cursor: pointer;
 `;

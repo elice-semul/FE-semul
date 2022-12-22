@@ -61,14 +61,29 @@ const completedOrderTagProps = [
     nextCompleted: true,
   },
 ];
+
+const renderingPageArray = [
+  ORDER_STATUS.CONNECT,
+  ORDER_STATUS.INSPECT,
+  ORDER_STATUS.LAUNDRY,
+  ORDER_STATUS.ARRIVAL,
+];
+
 export const getOrderStatusTagProps = (orderStatus, renderingStatus) => {
+  const orderStatusIdx = renderingPageArray.findIndex((status) => status === orderStatus);
+  const renderingStatusIdx = renderingPageArray?.findIndex((status) => status === renderingStatus);
   if (orderStatus === ORDER_STATUS.COMPLETE) {
-    const props = completedOrderTagProps.find((e) => e.rendingStatus === renderingStatus);
+    const props = completedOrderTagProps[renderingStatusIdx];
+    if (!props) throw new Error('[complete]renderingStatus props의 값이 잘못되었습니다.');
+    return props;
+  }
+  if (renderingStatusIdx !== -1 && orderStatusIdx > renderingStatusIdx) {
+    const props = completedOrderTagProps[renderingStatusIdx];
     if (!props) throw new Error('renderingStatus props의 값이 잘못되었습니다.');
     return props;
   }
 
-  const props = orderStatusTagProps.find((e) => e.orderStatus === orderStatus);
+  const props = orderStatusTagProps[orderStatusIdx];
   if (!props) throw new Error('orderStatus props의 값이 잘못되었습니다.');
   return props;
 };

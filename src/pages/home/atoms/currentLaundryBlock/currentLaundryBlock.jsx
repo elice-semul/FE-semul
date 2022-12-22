@@ -23,7 +23,7 @@ const CurrentLaundryBlock = ({ currentOrder }) => {
           <StyledOrderCreatedDateText>{`주문번호: ${currentOrder.id} | ${currentOrder.pickUpDateTime}`}</StyledOrderCreatedDateText>
           <StyledArrowDownIcon />
         </StyledTextLayoutContainer>
-        <OrderStatusTagBlock orderStatus={currentOrder.status} />
+        <OrderStatusTagBlock order={currentOrder} />
       </NonStyledBtnContainer>
 
       {isClicked && (
