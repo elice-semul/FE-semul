@@ -11,6 +11,7 @@ import {
   Price,
   OrderForm,
   OrderComplete,
+  OrderList,
 } from '@/pages';
 
 function Router() {
@@ -26,6 +27,7 @@ function Router() {
         <Route path="/price" element={<Price />} />
         <Route path="/washing" element={<OrderForm />} />
         <Route path="/washing/complete" element={<OrderComplete />} />
+        <Route path="/history" element={<OrderList />} />
       </Route>
     </Routes>
   );
