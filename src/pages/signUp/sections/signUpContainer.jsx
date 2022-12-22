@@ -7,6 +7,7 @@ import DaumApi from '../page/daumApi';
 import { StyledSignUpButton, StyledSignUpDiv, StyledSignUpContainer, StyledSignUpTitle, StyledSignUpSubmit }  from './styled';
 
 import { Form } from '@/pages/common/atoms'
+import axios from "axios";
 
 const SignUpContainer = () => {
   const [values, setValues] = useState({
@@ -56,9 +57,16 @@ const SignUpContainer = () => {
          'detailAddr' : values.detailAddress,
          'jibun': address,
        }
-    }  
-      alert('회원가입이 완료되었습니다.');
-      navigate('/');
+    }
+      axios.post('http://34.64.61.59:3000/users/signup',body)
+          .then((data) => {
+            if(data.status === 201){
+              alert('회원가입이 완료되었습니다.');
+              navigate('/');
+            }else{
+              alert('회원가입 실패');
+            }
+          });
     }else{
       alert('모든 정보를 입력해 주세요');
     }

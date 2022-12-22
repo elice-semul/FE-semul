@@ -11,10 +11,10 @@ const PriceContainer = () => {
   const [orgPrice,setOrgPrice] = useState([]);
 
   useEffect(() => {
-      axios.get('/products')
+      axios.get('http://34.64.61.59:3000/products')
        .then((data) => {
-        setPrice(data.data.produceList);
-        setOrgPrice(data.data.produceList);
+        setPrice(data.data);
+        setOrgPrice(data.data);
      });
   }, []);
 
