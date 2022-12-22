@@ -18,7 +18,7 @@ function Router() {
     <Routes>
       <Route path="/" element={<App />}>
         <Route index element={<Home />} />
-        <Route path="/order/:id" element={<OrderDetail />} />
+        <Route path="/order/:orderId" element={<OrderDetail />} />
         <Route path="/myPage" element={<MyPage />} />
         <Route path="/wallet" element={<Wallet />} />
         <Route path="/login" element={<Login />} />

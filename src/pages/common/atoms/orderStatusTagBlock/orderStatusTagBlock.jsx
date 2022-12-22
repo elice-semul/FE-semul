@@ -7,9 +7,9 @@ import {
 
 import { getOrderStatusTagProps } from '@/utils/getOrderStatusTagProps';
 
-const OrderStatusTagBlock = ({ orderStatus, renderingStatus }) => {
+const OrderStatusTagBlock = ({ order, renderingStatus }) => {
   const { prevCompleted, prevText, nextCompleted, nextText } = getOrderStatusTagProps(
-    orderStatus,
+    order.status,
     renderingStatus
   );
   return (
