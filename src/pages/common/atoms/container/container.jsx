@@ -1,6 +1,7 @@
 import { StyledContainer } from '@/pages/common/atoms/container/style';
 
 const Container = ({
+  className,
   children,
   display,
   position,
@@ -15,6 +16,7 @@ const Container = ({
 }) => {
   return (
     <StyledContainer
+      className={className}
       display={display}
       position={position}
       backGroundColor={backGroundColor}
