@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 
 import appBackground from '@/assets/images/appBackground.png';
 import { Footer } from '@/pages/common/components';
+import { Header } from '@/pages/common/sections';
 
 const Wrapper = styled.div`
   position: relative;
@@ -106,7 +107,7 @@ export function App() {
         </ServiceDesc>
       </DescContainer>
       <Container>
-        {location.pathname === '/login' && <div>Header 추가해주세요.</div>}
+        {location.pathname === '/login' && <Header>로그인</Header>}
         <OutletContainer>
           <Outlet />
         </OutletContainer>

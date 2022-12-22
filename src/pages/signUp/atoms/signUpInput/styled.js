@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { theme } from '@/styles/theme' 
+import { theme } from '@/styles/theme'
 
 export const StyledSignUpInput = styled.input`
   background-color: ${ theme.colors.gray100 };

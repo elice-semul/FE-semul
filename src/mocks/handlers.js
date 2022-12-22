@@ -690,40 +690,54 @@ export const handlers = [
           {
             name: '와이셔츠',
             price: 12000,
-            category: 1,
+            category: 'CLOTHING',
           },
           {
             name: '가죽바지',
             price: 10000,
-            category: 5,
+            category: 'CLOTHING',
           },
           {
             name: '운동화',
             price: 6000,
-            category: 4,
+            category: 'SHOES',
           },
           {
             name: '일반이불',
             price: 82000,
-            category: 3,
+            category: 'BEDDING',
           },
           {
             name: '카페트',
             price: 39000,
-            category: 2,
+            category: 'LIVING',
           },
           {
             name: '생활빨래',
             price: 10800,
-            category: 2,
+            category: 'BEDDING',
           },
           {
             name: '블라우스',
             price: 22000,
-            category: 1,
+            category: 'CLOTHING',
           },
         ],
       })
-    );
+      )
+  }),
+  rest.post('/login', (req, res, ctx) => {
+    if(req.body.email === 'test@naver.com' && req.body.password === 'test'){
+      return res(
+          ctx.json({
+            result : 'token' ,
+          })
+      )
+    }
+    return res(
+        ctx.json({
+          result : 'fail'
+        })
+    )
   }),
 ];

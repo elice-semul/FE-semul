@@ -3,33 +3,45 @@ import { useNavigate } from 'react-router-dom';
 import { StyledPriceFlex } from './styled';
 
 import {Button} from '@/pages/common/atoms';
-import {theme} from '@/styles/theme';
 
-const PriceMenu = ({setPrice}) => {
+const PriceMenu = ({orgPrice ,setPrice ,setCate}) => {
   const navigate = useNavigate();
-  
   const menu = [
     'ALL',
     'CLOTHING',
     'LIVING',
     'BEDDING',
     'SHOES',
-    'LEATHER'
+    'LEATHER',
+    'REPAIR',
+    'STORAGE'
   ];
+  const backColor = [
+    'yellow',
+    'green',
+    'red',
+    'purple',
+    'pink',
+    'light',
+    'skyblue',
+    'snow'
+  ]
 
-  const handleBtnClick = (e) => {
-    setPrice([{
-      name : '와이셔츠',
-      price: 12000, 
-      category: 1,
-    }]);
+  const handleBtnClick = (value) => {
+    setCate(value);
+    if(value === 'ALL' ){
+      setPrice(orgPrice);
+    }else{
+      const result = orgPrice.filter(orgPrice => orgPrice.category === value);
+      setPrice(result);
+    }
   };
 
-  const mapedMock = menu.map((text, index) => (
+  const menuMock = menu.map((text, index) => (
     <Button 
       onBtnClick={(e) => handleBtnClick(text)}
-      key={index} 
-      backGroundColor={theme.colors.gray100} 
+      key={index}
+      backGroundColor='#e1e1e1'
       height='60px'
       width='100px'
       fontSize='1.4rem'
@@ -39,7 +51,7 @@ const PriceMenu = ({setPrice}) => {
 
   return (
     <StyledPriceFlex>
-      {mapedMock}
+      {menuMock}
     </StyledPriceFlex>
   )
 };

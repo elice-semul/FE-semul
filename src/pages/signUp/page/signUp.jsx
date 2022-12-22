@@ -1,4 +1,4 @@
-import SignUpContainer from "../sections/signUpContainer";
+import SignUpContainer from '../sections/signUpContainer';
 
 import { Header } from '@/pages/common/sections';
 

@@ -11,8 +11,8 @@ export const StyledPriceTable = styled.table`
       text-align: left;
       padding: 1.5rem 1rem;
       vertical-align: middle;
-      font-weight: 500;
-      border: 1px solid ${ theme.colors.gray100 };
+      font-weight: bold;
+      border: 1px solid #e2e2e2;
     }
 
     td {
