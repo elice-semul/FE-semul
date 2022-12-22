@@ -14,3 +14,12 @@ export const StyledLoginContainer = styled.div`
   align-content: center;
   min-height: 80vh;
 `;
+
+export const StyledLoginSpan = styled.span`
+  text-align: center;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  color: red;
+  font-size: 1.3rem;
+  display: inline-block;
+`;

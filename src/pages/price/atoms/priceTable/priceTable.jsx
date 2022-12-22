@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 import { StyledPriceTable } from './styled';
 
-const priceTable =  ({ price }) => {
+const priceTable =  ({ price ,cate}) => {
   
 const list = price.map((i,index) => (
     <tr key={index}>
@@ -16,7 +16,7 @@ const list = price.map((i,index) => (
     <StyledPriceTable>
         <thead>
           <tr>
-            <th>명명명</th>
+            <th>{cate}</th>
             <th>가격</th>
           </tr>
         </thead>

@@ -7,19 +7,22 @@ import PriceTable from '../atoms/priceTable/priceTable';
 
 const PriceContainer = () => {
   const [price, setPrice] = useState([]);
+  const [cate, setCate] = useState('ALL');
+  const [orgPrice,setOrgPrice] = useState([]);
 
   useEffect(() => {
       axios.get('/products')
        .then((data) => {
         setPrice(data.data.produceList);
+        setOrgPrice(data.data.produceList);
      });
   }, []);
 
   return (
     <>
-      <PriceHeader/>
-      <PriceMenu setPrice={setPrice}/>
-      <PriceTable price={price}/>
+      <PriceHeader price={price} orgPrice={orgPrice} setPrice={setPrice}/>
+      <PriceMenu setPrice={setPrice} orgPrice={orgPrice} setCate={setCate}/>
+      <PriceTable price={price} cate={cate}/>
     </>
   );
 };
