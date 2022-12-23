@@ -8,7 +8,6 @@ import OrderForm from './orderFrom/page/orderForm';
 import Price from './price/page/price';
 import SignUp from './signUp/page/signUp';
 import Wallet from './wallet/page/wallet';
-
 export {
   Home,
   MyPage,
