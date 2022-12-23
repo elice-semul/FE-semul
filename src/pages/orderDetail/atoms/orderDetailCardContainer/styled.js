@@ -12,6 +12,7 @@ export const StyledOrderDetailCardContainer = styled.div`
   white-space: pre-line;
   position: relative;
   overflow: scroll;
+  margin-top: 30px;
 `;
 
 export const StyledOrderCardDateText = styled.span`

@@ -12,6 +12,7 @@ import {
 
 import { OrderStatusTagBlock } from '@/pages/common/atoms';
 import { Typography } from '@/pages/common/sections';
+import { dateFormatForOrderDetail } from '@/utils/dateFormating';
 import { ORDER_STATUS } from '@/utils/orderStatus';
 
 const renderingPageArray = [
@@ -71,7 +72,7 @@ const OrderDetailCardContainer = ({
   };
   return (
     <StyledOrderDetailCardContainer>
-      <StyledOrderCardDateText>{date}</StyledOrderCardDateText>
+      <StyledOrderCardDateText>{dateFormatForOrderDetail(date)}</StyledOrderCardDateText>
       <OrderStatusTagBlock {...{ order }} {...{ renderingStatus }} />
       <Typography text={lineOneTitle} strongText={lineOneStrongText} />
       <SecondLineTypography>{lineTwoTitle}</SecondLineTypography>
