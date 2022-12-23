@@ -26,20 +26,20 @@ const LoginContainer = () => {
     }
     setLoginAlert(newLoginAlert);
     if(account.password && account.email){
-       await axios.post('/login', {
+       await axios.post('http://34.64.61.59:3000/users/login', {
         email: account.email,
-        password: account.password
+        password: account.password,
       })
       .then((response) => {
-        if(response.data.result === 'token'){
-          sessionStorage.setItem('Authorization', response.data.result);
+        if(response.data.access_token){
+          sessionStorage.setItem('Authorization', response.data.access_token);
           navigate('/');
         }else{
-          alert('로그인 정보를 확인해 주세요');
+          alert('아이디 혹은 비밀번호를 확인해 주세요');
         }
       })
       .catch((error) => {
-        console.log('login error!!:',error);
+        alert('아이디 혹은 비밀번호를 확인해 주세요');
       });
     }
   }
