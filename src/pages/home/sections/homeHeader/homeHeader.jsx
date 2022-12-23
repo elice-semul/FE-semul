@@ -1,10 +1,10 @@
 import { HomeHeaderText, HomeHeaderBtnBlock } from '../../atoms';
 import { StyledHomeHeaderContainer } from './styled';
 
-const HomeHeader = ({ address }) => {
+const HomeHeader = (props) => {
   return (
     <StyledHomeHeaderContainer>
-      <HomeHeaderText {...{ address }} />
+      <HomeHeaderText {...props} />
       <HomeHeaderBtnBlock />
     </StyledHomeHeaderContainer>
   );

@@ -7,6 +7,7 @@ import Form from './form/form';
 import Image from './image/image';
 import Input from './input/input';
 import Label from './label/label';
+import Loading from './loading/loading';
 import OrderImageSummaryBlock from './orderImageSummaryBlock/orderImageSummaryBlock';
 import OrderStatusTagBlock from './orderStatusTagBlock/orderStatusTagBlock';
 import P from './p/p';
@@ -28,4 +29,5 @@ export {
   Div,
   Label,
   Select,
+  Loading,
 };
