@@ -3,7 +3,7 @@ import { OrderDetailCardContainer } from '../../atoms';
 const LaundryArrivalCard = ({ order, renderingStatus, setRenderingStatus }) => {
   return (
     <OrderDetailCardContainer
-      date={order.pickUpDateTime}
+      date={order.createdAt}
       orderStatus={order.status}
       lineOneTitle="고객님!"
       lineOneStrongText="고객님!"

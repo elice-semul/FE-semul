@@ -1,13 +1,16 @@
 import { OrderDetailCardContainer } from '../../atoms';
 
+import { ORDER_STATUS } from '@/utils/orderStatus';
+
 const LaundryConnectCard = ({ order, renderingStatus, setRenderingStatus }) => {
+  const isConnect = order.status === ORDER_STATUS.CONNECT;
   return (
     <OrderDetailCardContainer
-      date="2022년 12월 13일 화요일"
+      date={order.createdAt}
       orderStatus={order.status}
-      lineOneTitle="동네 세탁소와"
-      lineOneStrongText="동네 세탁소"
-      lineTwoTitle="연결 중입니다."
+      lineOneTitle={isConnect ? '동네 세탁소와' : `${order.laundry.name} 세탁소와`}
+      lineOneStrongText={isConnect ? '동네 세탁소' : `${order.laundry.name}`}
+      lineTwoTitle={isConnect ? '연결 중입니다.' : '연결되었습니다.'}
       description={`새물은 믿고 맡길 수 있는\n세탁 전문가와 함께합니다.`}
       {...{ order }}
       {...{ renderingStatus }}

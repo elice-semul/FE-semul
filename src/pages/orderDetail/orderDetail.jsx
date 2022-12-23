@@ -9,7 +9,6 @@ import {
   LaundryInspectCard,
   LaundryIngCard,
   LaundryArrivalCard,
-  OrderNavBtnBlock,
 } from './sections';
 import { StyledOrderDetailContainer } from './styled';
 
@@ -19,12 +18,24 @@ import { ORDER_STATUS } from '@/utils/orderStatus';
 const OrderDetail = () => {
   const [renderingStatus, setRenderingStatus] = useState('loading');
   const { orderId } = useParams();
+  const token = sessionStorage.getItem('Authorization');
   const {
     status,
     data: renderingOrder,
     error,
   } = useQuery(['renderingOrder'], async () => {
-    const { data } = await axios.get(`/mock/orders/${orderId}`);
+    const { data } = await axios.get(`${import.meta.env.VITE_BASE}/orders/${orderId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+    console.log(data);
+    if (data.status === ORDER_STATUS.COMPLETE) {
+      setRenderingStatus(ORDER_STATUS.ARRIVAL);
+      return data;
+    }
+
     setRenderingStatus(data.status);
     return data;
   });
@@ -54,7 +65,7 @@ const OrderDetail = () => {
             {...{ setRenderingStatus }}
           />
         );
-      case ORDER_STATUS.ARRIVAL:
+      case ORDER_STATUS.ARRIVAL || ORDER_STATUS.COMPLETE:
         return (
           <LaundryArrivalCard
             order={renderingOrder}
@@ -74,7 +85,6 @@ const OrderDetail = () => {
         text={`${renderingOrder?.user?.name}님의 세탁 기록`}
         strongText={renderingOrder?.user?.name}
       />
-      <OrderNavBtnBlock />
       {getRenderingCard()}
     </StyledOrderDetailContainer>
   );
