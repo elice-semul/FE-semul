@@ -20,7 +20,7 @@ export const StyledTextLayoutContainer = styled.div`
 `;
 
 export const StyledOrderCreatedDateText = styled.p`
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
 `;
 

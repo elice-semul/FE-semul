@@ -9,6 +9,7 @@ import {
 } from './styled';
 
 import { OrderStatusTagBlock, OrderImageSummaryBlock } from '@/pages/common/atoms';
+import { dateFormatCommon } from '@/utils/dateFormating';
 
 const CurrentLaundryBlock = ({ currentOrder }) => {
   const [isClicked, setIsClicked] = useState(false);
@@ -20,7 +21,9 @@ const CurrentLaundryBlock = ({ currentOrder }) => {
     <StyledCurrentLaundryBlockContainer>
       <NonStyledBtnContainer onClick={handleBlockClick}>
         <StyledTextLayoutContainer>
-          <StyledOrderCreatedDateText>{`주문번호: ${currentOrder.id} | ${currentOrder.pickUpDateTime}`}</StyledOrderCreatedDateText>
+          <StyledOrderCreatedDateText>{`주문번호: ${currentOrder.orderNum} | ${dateFormatCommon(
+            currentOrder.createdAt
+          )}`}</StyledOrderCreatedDateText>
           <StyledArrowDownIcon />
         </StyledTextLayoutContainer>
         <OrderStatusTagBlock order={currentOrder} />
@@ -30,7 +33,7 @@ const CurrentLaundryBlock = ({ currentOrder }) => {
         <OrderImageSummaryBlock
           key={currentOrder.id}
           orderId={currentOrder.id}
-          products={currentOrder.orderProduct}
+          products={currentOrder.orderProducts}
         />
       )}
     </StyledCurrentLaundryBlockContainer>

@@ -1,18 +1,44 @@
+import { useState } from 'react';
 import { FaCaretDown } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 import { StyledHomeHeaderTextBlock, StyledHomeHeaderText } from './styled';
 
-const HomeHeaderText = ({ address, queryStatus }) => {
+import { AddressFormPortal } from '@/pages/common/pages';
+
+const HomeHeaderText = ({ address, queryStatus, currentUser }) => {
+  const [isModalShowing, setIsModalShowing] = useState(false);
   const navigate = useNavigate();
-  const handleTextBlockClick = () => (address ? navigate('/') : navigate('/login'));
+  const handleTextBlockClick = () => (address ? setIsModalShowing(true) : navigate('/login'));
+  const handleConfirmClick = () => {};
+
+  const handleCancelClick = () => {
+    setIsModalShowing(false);
+  };
+
+  const handleSuccessClick = () => {
+    setIsModalShowing(false);
+  };
   return (
-    <StyledHomeHeaderTextBlock onClick={handleTextBlockClick}>
-      <StyledHomeHeaderText>
-        {queryStatus === 'loading' ? '로딩중' : address || '로그인'}
-      </StyledHomeHeaderText>
-      <FaCaretDown className="caretDownIcon" />
-    </StyledHomeHeaderTextBlock>
+    <>
+      <StyledHomeHeaderTextBlock onClick={handleTextBlockClick}>
+        <StyledHomeHeaderText>
+          {queryStatus === 'loading' ? '로딩중' : address || '로그인'}
+        </StyledHomeHeaderText>
+        <FaCaretDown className="caretDownIcon" />
+      </StyledHomeHeaderTextBlock>
+      {isModalShowing && (
+        <AddressFormPortal
+          text="주소 변경"
+          successText="주소 변경 완료"
+          onShow={setIsModalShowing}
+          onConfirm={handleConfirmClick}
+          onCancel={handleCancelClick}
+          onSuccess={handleSuccessClick}
+          currentUser={currentUser}
+        />
+      )}
+    </>
   );
 };
 
