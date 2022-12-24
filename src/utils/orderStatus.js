@@ -1,7 +1,7 @@
 export const ORDER_STATUS = {
-  CONNECT: 'connect',
-  INSPECT: 'inspect',
-  LAUNDRY: 'laundry',
-  ARRIVAL: 'arrival',
-  COMPLETE: 'complete',
+  CONNECT: 'CONNECT',
+  INSPECT: 'INSPECT',
+  LAUNDRY: 'LAUNDRY',
+  ARRIVAL: 'ARRIVAL',
+  COMPLETE: 'COMPLETE',
 };

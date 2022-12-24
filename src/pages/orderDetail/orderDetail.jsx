@@ -30,7 +30,6 @@ const OrderDetail = () => {
         'Content-Type': 'application/json',
       },
     });
-    console.log(data);
     if (data.status === ORDER_STATUS.COMPLETE) {
       setRenderingStatus(ORDER_STATUS.ARRIVAL);
       return data;

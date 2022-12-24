@@ -16,7 +16,7 @@ const getRenderingIcon = (title) => {
 const HomeImageBtn = ({ title, paragraph }) => {
   const navigate = useNavigate();
   const handleButtonClick = () =>
-    title === '세탁 가격' ? navigate('/price') : navigate('order/form');
+    title === '세탁 가격' ? navigate('/price') : navigate('/order/form');
   return (
     <StyledHomeImageBtnContainer onClick={(title) => handleButtonClick(title)}>
       {getRenderingIcon(title)}
