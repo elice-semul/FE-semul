@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 
 import { getCurrentUserApi } from './hooks/api';
 import { HomeHeader, HomeBtnWrap, HomeLaundrtWidget, HomeBanner } from './sections/index';
-import { StyledHomePageContauner } from './styled';
+import { StyledHomePageContainer } from './styled';
 
 const Home = () => {
   const token = sessionStorage.getItem('Authorization');
@@ -16,21 +16,21 @@ const Home = () => {
       return false;
     }, [currentUser]);
     return (
-      <StyledHomePageContauner>
+      <StyledHomePageContainer>
         <HomeHeader address={fullAddress} queryStatus={status} currentUser={currentUser} />
         <HomeBtnWrap token={token} />
         <HomeLaundrtWidget currentUser={currentUser} />
         <HomeBanner />
-      </StyledHomePageContauner>
+      </StyledHomePageContainer>
     );
   }
   return (
-    <StyledHomePageContauner>
+    <StyledHomePageContainer>
       <HomeHeader />
       <HomeBtnWrap />
       <HomeLaundrtWidget />
       <HomeBanner />
-    </StyledHomePageContauner>
+    </StyledHomePageContainer>
   );
 };
 

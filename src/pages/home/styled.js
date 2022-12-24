@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-export const StyledHomePageContauner = styled.div`
+export const StyledHomePageContainer = styled.div`
   width: 100%;
   height: 100%;
+  position: relative;
 `;
