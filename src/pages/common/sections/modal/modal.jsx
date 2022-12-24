@@ -11,9 +11,11 @@ import {
 import { Button } from '@/pages/common/atoms';
 import { theme } from '@/styles/theme';
 
-const Modal = ({ text, successText, onShow, onConfirm, onSuccess, onCancel }) => {
+const Modal = ({ text, successText, onShow, onConfirm, onSuccess, onCancel ,cancelYn}) => {
   const [isSuccess, setIsSuccess] = useState(false);
-
+  if(cancelYn === undefined){
+    cancelYn = true;
+  }
   const handleModalLayoutClick = () => {
     onShow(false);
   };
@@ -54,7 +56,7 @@ const Modal = ({ text, successText, onShow, onConfirm, onSuccess, onCancel }) =>
             >
               확인
             </Button>
-            {!isSuccess && (
+            {!isSuccess && cancelYn  && (
               <Button
                 width="8rem"
                 height="4rem"
