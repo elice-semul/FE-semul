@@ -1,4 +1,9 @@
 import styled from 'styled-components';
+export const StyledHomeBannerWrap = styled.div`
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+`;
 
 export const StyledHomeBannerContainer = styled.div`
   height: 10vh;

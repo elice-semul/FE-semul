@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import { Loading } from '../common/atoms/index';
 import { Typography } from '../common/sections/index';
 import {
   LaundryConnectCard,
@@ -38,6 +39,15 @@ const OrderDetail = () => {
     setRenderingStatus(data.status);
     return data;
   });
+
+  if (!renderingOrder) {
+    return (
+      <StyledOrderDetailContainer>
+        <Loading />
+      </StyledOrderDetailContainer>
+    );
+  }
+
   const getRenderingCard = () => {
     switch (renderingStatus) {
       case ORDER_STATUS.CONNECT:
