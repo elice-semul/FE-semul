@@ -12,6 +12,7 @@ const SubmitBtn = () => {
       radius="default"
       fontSize="36px"
       fontWeight="bold"
+      type="submit"
     >
       신청하기
     </Button>

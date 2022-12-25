@@ -1,9 +1,8 @@
 import { Flex, Span } from '@/pages/common/atoms/index';
 
-const Price = ({ totalPrice }) => {
-  const total = totalPrice.reduce((acc, cur) => {
-    const split = cur.option.split(' ');
-    const price = Number(split[split.length - 1].slice(0, -1)) * Number(cur.quantity);
+const Price = ({ laundryTable }) => {
+  const total = laundryTable.reduce((acc, cur) => {
+    const price = Number(cur.price) * Number(cur.qty);
     return acc + price;
   }, 0);
 

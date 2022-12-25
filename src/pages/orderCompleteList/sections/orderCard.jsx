@@ -1,10 +1,17 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import FlexedSpan from '../atoms/flexedSpan';
 import OrderNumber from '../atoms/orderNumber';
 
 import { Container } from '@/pages/common/atoms/index';
-const OrderCard = () => {
+const OrderCard = ({ keyDate, orderNumber, status, laundry, laundryDate, totalPrice }) => {
+  const navigate = useNavigate();
+
+  const handleDetailClick = () => {
+    navigate(`/order/${keyDate}`);
+  };
+
   return (
     <Container
       margin="0 0 20px 0"
@@ -13,12 +20,20 @@ const OrderCard = () => {
       width="350px"
       radius="20px"
       shadow="0px 2px 10px 0px gray"
+      onClick={handleDetailClick}
     >
-      <OrderNumber orderNumber="848569" orderState="배송 완료" />
+      <OrderNumber orderNumber={orderNumber} orderState={status} />
       <DivisionLine />
-      <FlexedSpan title="세탁물" content="일반 패딩 외 5건" />
-      <FlexedSpan title="세탁기간" content="2022.12.13 ~ 2022.12.14" />
-      <FlexedSpan title="세탁비용" content="30,000원" />
+      <FlexedSpan
+        title="세탁물"
+        content={
+          laundry.length === 1
+            ? laundry[0].productName
+            : `${laundry[0].productName} 외 ${laundry.length - 1}`
+        }
+      />
+      <FlexedSpan title="세탁기간" content={laundryDate} />
+      <FlexedSpan title="세탁비용" content={totalPrice} />
     </Container>
   );
 };
@@ -28,10 +43,4 @@ const DivisionLine = styled.div`
   margin: 10px 0px;
 `;
 
-const Test = styled.div`
-  height: 100vh;
-  width: 100wh;
-  background-color: tomato;
-  padding: 10%;
-`;
 export default OrderCard;

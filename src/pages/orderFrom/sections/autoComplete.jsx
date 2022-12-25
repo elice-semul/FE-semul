@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import styled from 'styled-components';
@@ -12,11 +13,11 @@ const AutoComplete = ({
   registerName,
   inputValue,
   setInputValue,
+  onItemBtnClick,
 }) => {
   const [isHaveInputValue, setIsHaveInputValue] = useState(false);
   const [dropDownList, setDropDownList] = useState([]);
   const [dropDownItemIndex, setDropDownItemIndex] = useState(-1);
-
   const _register = register(registerName);
 
   const showDropDownList = () => {
@@ -24,7 +25,9 @@ const AutoComplete = ({
       setIsHaveInputValue(false);
       setDropDownList([]);
     } else {
-      const choosenTextList = options.filter((textItem) => textItem.includes(inputValue));
+      const choosenTextList = options.filter((value) => {
+        return value.name.includes(inputValue);
+      });
       setDropDownList(choosenTextList);
     }
   };
@@ -35,7 +38,9 @@ const AutoComplete = ({
   };
 
   const clickDropDownItem = (clickedItem) => {
-    setInputValue(clickedItem);
+    const item = `${clickedItem.name} ${clickedItem.price}원`;
+    onItemBtnClick(clickedItem);
+    setInputValue(item);
     setIsHaveInputValue(false);
   };
 
@@ -86,7 +91,7 @@ const AutoComplete = ({
                 onMouseOver={() => setDropDownItemIndex(dropDownIndex)}
                 className={dropDownItemIndex === dropDownIndex ? 'selected' : ''}
               >
-                {dropDownItem}
+                {dropDownItem.name} {dropDownItem.price}원
               </DropDownItem>
             );
           })}

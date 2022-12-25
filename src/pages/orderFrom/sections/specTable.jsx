@@ -1,15 +1,16 @@
-import { useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import styled from 'styled-components';
 
-import { Button, Container, Flex, Span } from '@/pages/common/atoms/index';
+import { Button } from '@/pages/common/atoms/index';
 import { theme } from '@/styles/theme';
 
-const SpecTable = ({ table, onRemoveBtnClick }) => {
-  const list = table.map((value, idx) => (
+const SpecTable = ({ laundryTable, onRemoveBtnClick }) => {
+  const list = laundryTable.map((value, idx) => (
     <tr key={idx}>
-      <td>{value.option}</td>
-      <td>{value.quantity}개</td>
+      <td>
+        {value.name} {value.price}
+      </td>
+      <td>{value.qty}개</td>
       <td>
         <Button type="button" onBtnClick={onRemoveBtnClick(idx)}>
           <AiOutlineClose />

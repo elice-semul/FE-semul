@@ -15,15 +15,15 @@ const Toggle = ({ isCurrent, onToggleBtnClick }) => {
   if (isCurrent === '세탁중') {
     return (
       <Flex gap="10px" margin="30px 10px">
-        <StyledToggleButton onClick={handleCruuenBtnClick}>세탁중</StyledToggleButton>
         <StyledNormalButton onClick={handleCompleteBtnClick}>이용내역</StyledNormalButton>
+        <StyledToggleButton onClick={handleCruuenBtnClick}>세탁중</StyledToggleButton>
       </Flex>
     );
   }
   return (
     <Flex gap="10px" margin="30px 10px">
-      <StyledNormalButton onClick={handleCruuenBtnClick}>세탁중</StyledNormalButton>
       <StyledToggleButton onClick={handleCompleteBtnClick}>이용내역</StyledToggleButton>
+      <StyledNormalButton onClick={handleCruuenBtnClick}>세탁중</StyledNormalButton>
     </Flex>
   );
 };
