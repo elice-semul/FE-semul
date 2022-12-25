@@ -12,6 +12,7 @@ import {
   OrderForm,
   OrderComplete,
   OrderList,
+  UserUpdateForm,
 } from '@/pages';
 
 function Router() {
@@ -28,6 +29,7 @@ function Router() {
         <Route path="/washing" element={<OrderForm />} />
         <Route path="/washing/complete" element={<OrderComplete />} />
         <Route path="/history" element={<OrderList />} />
+        <Route path="/updateUser" element={<UserUpdateForm />} />
       </Route>
     </Routes>
   );
