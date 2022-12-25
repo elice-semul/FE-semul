@@ -1,19 +1,44 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Toggle from '../atoms/toggle';
 import OrderCompleteList from '../sections/orderCompleteList';
 import OrderCurrentList from '../sections/orderCurrentList';
 
-import { Container, Span } from '@/pages/common/atoms/index';
+import { Container, Loading, Span } from '@/pages/common/atoms/index';
+import * as API from '@/utils/api';
 
 const OrderList = () => {
-  const [isCurrent, setIsCurrent] = useState('세탁중');
+  const [isCurrent, setIsCurrent] = useState('이용내역');
+  const [complete, setComplete] = useState([]);
+  const [current, setCurrent] = useState([]);
 
-  const { status, error } = useQuery(['completeOrder'], async () => {
-    const { data } = await axios.get('/mock/orders');
-    return data.result;
+  const { status, error } = useQuery(['completeOrders'], API.getCompleteOrders, {
+    onSuccess: (data) => {
+      const tempComplete = data
+        .filter((value) => value.status === 'COMPLETE')
+        .map((value) => {
+          const totalPrice = value.orderProducts.reduce((acc, cur) => {
+            acc += cur.price;
+            return acc;
+          }, 0);
+          return { ...value, totalPrice };
+        });
+
+      const tempCurrnet = data
+        .filter((value) => value.status !== 'COMPLETE')
+        .map((value) => {
+          const totalPrice = value.orderProducts.reduce((acc, cur) => {
+            acc += cur.price;
+            return acc;
+          }, 0);
+          return { ...value, totalPrice };
+        });
+
+      setComplete(tempComplete);
+      setCurrent(tempCurrnet);
+    },
   });
 
   const handleToggleBtnClick = (toggle) => {
@@ -21,7 +46,7 @@ const OrderList = () => {
   };
 
   if (status === 'loading') {
-    return <Container>loading</Container>;
+    return <Loading />;
   }
 
   if (error) {
@@ -34,7 +59,11 @@ const OrderList = () => {
         세물님의 세탁 기록
       </Span>
       <Toggle isCurrent={isCurrent} onToggleBtnClick={handleToggleBtnClick} />
-      {isCurrent === '세탁중' ? <OrderCurrentList /> : <OrderCompleteList />}
+      {isCurrent === '이용내역' ? (
+        <OrderCompleteList completeOrders={complete} />
+      ) : (
+        <OrderCurrentList currentOrders={current} />
+      )}
     </Container>
   );
 };

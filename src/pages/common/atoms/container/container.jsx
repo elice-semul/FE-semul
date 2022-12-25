@@ -13,6 +13,7 @@ const Container = ({
   margin,
   shadow,
   radius,
+  ...props
 }) => {
   return (
     <StyledContainer
@@ -27,6 +28,7 @@ const Container = ({
       margin={margin}
       shadow={shadow}
       radius={radius}
+      {...props}
     >
       {children}
     </StyledContainer>
