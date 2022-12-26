@@ -4,9 +4,9 @@ import { StyledContainer } from './styled';
 
 import { Div } from '@/pages/common/atoms';
 
-const Li = ({ type, icon, text, onMenuClick }) => {
+const Li = ({ type, icon, text, onSetMenuStatus }) => {
   const handleMenuClick = () => {
-    onMenuClick(type);
+    onSetMenuStatus(type);
   };
 
   return (
