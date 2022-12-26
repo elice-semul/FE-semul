@@ -13,6 +13,7 @@ import {
   OrderComplete,
   OrderList,
   UserUpdateForm,
+  NotFound,
 } from '@/pages';
 
 function Router() {
@@ -30,6 +31,7 @@ function Router() {
         <Route path="/washing/complete" element={<OrderComplete />} />
         <Route path="/history" element={<OrderList />} />
         <Route path="/updateUser" element={<UserUpdateForm />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );
