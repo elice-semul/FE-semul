@@ -9,6 +9,9 @@ const Home = () => {
   const token = sessionStorage.getItem('Authorization');
   if (token) {
     const { status, data: currentUser, error } = useQuery(['currentUser'], getCurrentUserApi);
+    if (status === 'error') {
+      throw new Error(error);
+    }
     const fullAddress = useMemo(() => {
       if (currentUser) {
         return currentUser.address.roadAddr + ' ' + currentUser.address.detailAddr;

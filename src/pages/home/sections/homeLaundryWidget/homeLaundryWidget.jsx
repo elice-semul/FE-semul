@@ -11,6 +11,9 @@ const HomeLaundrtWidget = ({ currentUser }) => {
   const token = sessionStorage.getItem('Authorization');
   if (token) {
     const { status, data: currentOrders, error } = useQuery(['currentOrders'], getCurrentOrdersApi);
+    if (status === 'error') {
+      throw new Error(error.message);
+    }
     if (status === 'loading') {
       return (
         <StyledLoadingContainer>
@@ -18,8 +21,9 @@ const HomeLaundrtWidget = ({ currentUser }) => {
         </StyledLoadingContainer>
       );
     }
+
     const userCurrentOrders = currentOrders.filter(
-      (order) => order.status !== ORDER_STATUS.COMPLETE && order.user.email === currentUser.email
+      (order) => order.status !== ORDER_STATUS.COMPLETE && order.user.email === currentUser?.email
     );
     const title = userCurrentOrders?.length > 0 ? '지금은 세탁 중 🧺' : '빨래 기다리는 중 👀';
     return (

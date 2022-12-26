@@ -1,6 +1,9 @@
-import { authInstance } from '@/utils/apiInstance';
+import { axiosAuthApi } from '@/utils/apiInstance';
+const BASE_URL = import.meta.env.VITE_BASE;
 
 export const getCurrentUserApi = async () => {
+  const token = sessionStorage.getItem('Authorization');
+  const authInstance = axiosAuthApi(BASE_URL, token);
   try {
     const { data } = await authInstance.get('/users');
     return data;
@@ -11,6 +14,8 @@ export const getCurrentUserApi = async () => {
 
 export const getCurrentOrdersApi = async () => {
   try {
+    const token = sessionStorage.getItem('Authorization');
+    const authInstance = axiosAuthApi(BASE_URL, token);
     const { data } = await authInstance.get('/orders');
     return data;
   } catch (e) {
