@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 
 import {
@@ -14,6 +15,7 @@ import {
 } from './styled';
 
 import { Button, ModalDaumApi } from '@/pages/common/atoms';
+import useCurrnetUser from '@/pages/home/hooks/useCurrentUser';
 import { theme } from '@/styles/theme';
 
 const Modal = ({ text, successText, onShow, onConfirm, onSuccess, onCancel, currentUser }) => {
@@ -21,7 +23,7 @@ const Modal = ({ text, successText, onShow, onConfirm, onSuccess, onCancel, curr
   const [address, setAddress] = useState(currentUser.address.roadAddr);
   const [detailAddress, setDetailAddress] = useState(currentUser.address.detailAddr);
   const [daumApi, setDaumApi] = useState(false);
-
+  const { currentUserMutate } = useCurrnetUser();
   const handleModalLayoutClick = () => {
     onShow(false);
   };
@@ -37,6 +39,7 @@ const Modal = ({ text, successText, onShow, onConfirm, onSuccess, onCancel, curr
 
   const handleConfirmButtonCLick = (event) => {
     event.stopPropagation();
+    currentUserMutate.mutate({ address: { roadAddr: address, detailAddr: detailAddress } });
     onConfirm();
     setIsSuccess(true);
   };

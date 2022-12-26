@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { HomeTitle, CurrentLaundryBlock, EmptyLaundryBlock } from '../../atoms/index';
 import { getCurrentOrdersApi } from '../../hooks/api';
+import useCurrentOrder from '../../hooks/useCurrentOrder';
 import { StyledHomeLaundryWidgetContainer, StyledLoadingContainer } from './styled';
 
 import { Loading } from '@/pages/common/atoms/index';
@@ -9,8 +10,10 @@ import { ORDER_STATUS } from '@/utils/orderStatus';
 
 const HomeLaundrtWidget = ({ currentUser }) => {
   const token = sessionStorage.getItem('Authorization');
+  const { currentOrderQuery } = useCurrentOrder();
+
   if (token) {
-    const { status, data: currentOrders, error } = useQuery(['currentOrders'], getCurrentOrdersApi);
+    const { status, data: currentOrders, error } = currentOrderQuery;
     if (status === 'error') {
       throw new Error(error.message);
     }
