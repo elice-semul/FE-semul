@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import useWallet from '@/hooks/useWallet';
 import { Container } from '@/pages/common/atoms';
 import PortalModal from '@/pages/common/pages/portalModal/portalModal';
 import { WalletPrice } from '@/pages/wallet/sections';
@@ -19,16 +20,24 @@ const mock = [
   },
 ];
 
+const transformTextToMoneyAmount = (text) => {
+  const [moneyAmount] = text.split('만원');
+  return Number(moneyAmount);
+};
+
 const WalletMenu = () => {
   const [isModalShowing, setIsModalShowing] = useState(false);
   const [modalText, setModalText] = useState('');
+  const { chargeMoneyInWallet } = useWallet();
 
   const handleMenuClick = (text) => {
     setIsModalShowing(true);
     setModalText(text);
   };
 
-  const handleConfirmClick = () => {};
+  const handleConfirmClick = () => {
+    chargeMoneyInWallet.mutate({ money: transformTextToMoneyAmount(modalText) });
+  };
 
   const handleCancelClick = () => {
     setIsModalShowing(false);
