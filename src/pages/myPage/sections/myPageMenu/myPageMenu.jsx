@@ -1,27 +1,53 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FiUserX, FiUser, FiLogOut } from 'react-icons/fi';
 import { IoWalletOutline } from 'react-icons/io5';
+import { useNavigate } from 'react-router-dom';
 
+import useMyPage from '@/hooks/useMyPage';
+import useWallet from '@/hooks/useWallet';
 import { PortalModal } from '@/pages/common/pages';
 import { Ul, Li } from '@/pages/myPage/atoms';
+import { removeUserInfo } from '@/utils/removeUserInfo';
 
 const mock = [
   { type: 'modified', icon: <FiUser size="3.2rem" />, text: '회원 정보 수정' },
   { type: 'wallet', icon: <IoWalletOutline size="3.2rem" />, text: '지갑' },
   { type: 'logout', icon: <FiLogOut size="3.2rem" />, text: '로그아웃' },
-  { type: 'withdrawal', icon: <FiUserX size="3.2rem" />, text: '회원탈퇴' },
+  { type: 'withdraw', icon: <FiUserX size="3.2rem" />, text: '회원탈퇴' },
 ];
 
-const MyPageMenu = ({ onMenuClick }) => {
+export const MENU_STATUS = {
+  MODIFIED: 'modified',
+  WALLET: 'wallet',
+  LOGOUT: 'logout',
+  WITHDRAW: 'withdraw',
+};
+
+const MyPageMenu = () => {
+  const navigate = useNavigate();
   const [isModalShowing, setIsModalShowing] = useState(false);
   const [modalText, setModalText] = useState('');
+  const [menuStatus, setMenuStatus] = useState(MENU_STATUS.MODIFIED);
+  const { withDrawUser } = useMyPage();
 
-  const handleMenuClick = (text) => {
+  useEffect(() => {
+    if (menuStatus === MENU_STATUS.WALLET) {
+      navigate('/wallet');
+    }
+  });
+
+  const handleModalMenuClick = (text) => {
     setIsModalShowing(true);
     setModalText(text);
   };
 
-  const handleConfirmClick = () => {};
+  const handleConfirmClick = () => {
+    if (menuStatus === MENU_STATUS.LOGOUT) {
+      removeUserInfo(navigate);
+    } else if (menuStatus === MENU_STATUS.WITHDRAW) {
+      withDrawUser.mutate();
+    }
+  };
 
   const handleCancelClick = () => {
     setIsModalShowing(false);
@@ -32,8 +58,8 @@ const MyPageMenu = ({ onMenuClick }) => {
   };
 
   const mapedMock = mock.map(({ text, ...props }, index) => (
-    <div key={index} onClick={() => handleMenuClick(text)}>
-      <Li key={index} {...{ text }} {...props} {...{ onMenuClick }} />
+    <div key={index} onClick={() => handleModalMenuClick(text)}>
+      <Li key={index} {...{ text }} {...props} onSetMenuStatus={setMenuStatus} />
     </div>
   ));
 
