@@ -7,8 +7,9 @@ import { StyledHomePageContainer } from './styled';
 
 const Home = () => {
   const token = sessionStorage.getItem('Authorization');
-  const { currentUserQuery } = useCurrnetUser();
   if (token) {
+    const { currentUserQuery } = useCurrnetUser();
+
     const { status, data: currentUser, error } = currentUserQuery;
     if (status === 'error') {
       throw new Error(error);
