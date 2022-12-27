@@ -82,7 +82,16 @@ export const getOrderStatusTagProps = (orderStatus, renderingStatus) => {
     if (!props) throw new Error('renderingStatus props의 값이 잘못되었습니다.');
     return props;
   }
-
+  if (orderStatus === ORDER_STATUS.CANCEL) {
+    const props = {
+      orderStatus: ORDER_STATUS.CANCEL,
+      prevText: '주문 취소',
+      nextText: '주문 취소',
+      prevCompleted: false,
+      nextCompleted: false,
+    };
+    return props;
+  }
   const props = orderStatusTagProps[orderStatusIdx];
   if (!props) throw new Error('orderStatus props의 값이 잘못되었습니다.');
   return props;

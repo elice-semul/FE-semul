@@ -14,11 +14,11 @@ const OrderStatusTagBlock = ({ order, renderingStatus }) => {
   );
   return (
     <StyledOrderStatusTagContainer>
-      <StyledOrderStatusTag isCompleted={prevCompleted}>
+      <StyledOrderStatusTag isCompleted={prevCompleted} status={order.status}>
         <StyledOrderStatusTagText>{prevText}</StyledOrderStatusTagText>
       </StyledOrderStatusTag>
       <StyledArrowIcon />
-      <StyledOrderStatusTag isCompleted={nextCompleted}>
+      <StyledOrderStatusTag isCompleted={nextCompleted} status={order.status}>
         <StyledOrderStatusTagText>{nextText}</StyledOrderStatusTagText>
       </StyledOrderStatusTag>
     </StyledOrderStatusTagContainer>
