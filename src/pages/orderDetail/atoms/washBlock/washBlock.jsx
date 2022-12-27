@@ -11,9 +11,9 @@ const WashBlock = ({ id, name, isCompleted, qty }) => {
     <StyledWashBlockContainer>
       <StyledWashImage src="../src/assets/images/clothThumbnail-1.jpeg" />
       <StyledWashBlockTextContainer>
-        <StyledWashIdText>빨래번호: {id}</StyledWashIdText>
+        {/* <StyledWashIdText>빨래 분류: {name}</StyledWashIdText> */}
         <StyledWashNameText>
-          {name} {qty}종
+          {name} {qty}개
         </StyledWashNameText>
       </StyledWashBlockTextContainer>
       {isCompleted && <StyledCheckIcon />}

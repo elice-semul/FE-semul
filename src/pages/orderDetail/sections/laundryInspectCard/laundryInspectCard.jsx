@@ -18,8 +18,8 @@ const LaundryInspectCard = ({ order, renderingStatus, setRenderingStatus }) => {
     <OrderDetailCardContainer
       date={order.createdAt}
       orderStatus={order.status}
-      lineOneTitle={`${order.laundry.name} 세탁소에서`}
-      lineOneStrongText={`${order.laundry.name} 세탁소`}
+      lineOneTitle={`${order.laundry.name}에서`}
+      lineOneStrongText={`${order.laundry.name}`}
       lineTwoTitle={isInspect ? '세탁물을 확인 중입니다.' : '세탁물을 인수했습니다.'}
       description={`새물은 믿고 맡길 수 있는\n세탁 전문가와 함께합니다.`}
       {...{ order }}

@@ -1,15 +1,14 @@
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 import { Loading } from '../common/atoms/index';
 import { Typography } from '../common/sections/index';
+import useDetailOrder from './hooks/useDetailOrder';
 import {
   LaundryConnectCard,
   LaundryInspectCard,
   LaundryIngCard,
   LaundryArrivalCard,
+  LaundryCancelCard,
 } from './sections';
 import { StyledOrderDetailContainer } from './styled';
 
@@ -18,29 +17,17 @@ import { ORDER_STATUS } from '@/utils/orderStatus';
 
 const OrderDetail = () => {
   const [renderingStatus, setRenderingStatus] = useState('loading');
-  const { orderId } = useParams();
-  const token = sessionStorage.getItem('Authorization');
-  const {
-    status,
-    data: renderingOrder,
-    error,
-  } = useQuery(['renderingOrder'], async () => {
-    const { data } = await axios.get(`${import.meta.env.VITE_BASE}/orders/${orderId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    });
-    if (data.status === ORDER_STATUS.COMPLETE) {
+  const { detailOrderQuery } = useDetailOrder();
+  const { status, data: renderingOrder, error } = detailOrderQuery;
+
+  useEffect(() => {
+    if (renderingOrder?.status === ORDER_STATUS.COMPLETE) {
       setRenderingStatus(ORDER_STATUS.ARRIVAL);
-      return data;
     }
+    setRenderingStatus(renderingOrder?.status);
+  }, [renderingOrder]);
 
-    setRenderingStatus(data.status);
-    return data;
-  });
-
-  if (!renderingOrder) {
+  if (status === 'loading') {
     return (
       <StyledOrderDetailContainer>
         <Loading />
@@ -53,6 +40,14 @@ const OrderDetail = () => {
       case ORDER_STATUS.CONNECT:
         return (
           <LaundryConnectCard
+            order={renderingOrder}
+            {...{ renderingStatus }}
+            {...{ setRenderingStatus }}
+          />
+        );
+      case ORDER_STATUS.CANCEL:
+        return (
+          <LaundryCancelCard
             order={renderingOrder}
             {...{ renderingStatus }}
             {...{ setRenderingStatus }}

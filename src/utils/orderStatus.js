@@ -4,4 +4,5 @@ export const ORDER_STATUS = {
   LAUNDRY: 'LAUNDRY',
   ARRIVAL: 'ARRIVAL',
   COMPLETE: 'COMPLETE',
+  CANCEL: 'CANCEL',
 };

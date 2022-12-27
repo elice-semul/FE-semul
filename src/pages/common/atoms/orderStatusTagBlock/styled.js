@@ -24,6 +24,11 @@ export const StyledOrderStatusTag = styled.div`
     css`
       background-color: ${(props) => props.theme.colors.primary};
     `}
+  ${(props) =>
+    props.status === 'CANCEL' &&
+    css`
+      background-color: ${(props) => props.theme.colors.warning};
+    `}
 `;
 
 export const StyledOrderStatusTagText = styled.p`
