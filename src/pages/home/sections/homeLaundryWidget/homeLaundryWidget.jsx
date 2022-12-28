@@ -25,7 +25,10 @@ const HomeLaundrtWidget = ({ currentUser }) => {
     }
 
     const userCurrentOrders = currentOrders.filter(
-      (order) => order.status !== ORDER_STATUS.COMPLETE && order.user.email === currentUser?.email
+      (order) =>
+        order.status !== ORDER_STATUS.COMPLETE &&
+        order.status !== ORDER_STATUS.CANCEL &&
+        order.user.email === currentUser?.email
     );
     const title = userCurrentOrders?.length > 0 ? '지금은 세탁 중 🧺' : '빨래 기다리는 중 👀';
     return (
