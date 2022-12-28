@@ -13,7 +13,8 @@ const usePostOrder = () => {
     },
     onError: (error) => {
       // eslint-disable-next-line no-alert
-      alert(error);
+      console.log(error);
+      // alert(error);
     },
   });
 

@@ -1,11 +1,6 @@
 import { Flex, Span } from '@/pages/common/atoms/index';
 
-const Price = ({ laundryTable }) => {
-  const total = laundryTable.reduce((acc, cur) => {
-    const price = Number(cur.price) * Number(cur.qty);
-    return acc + price;
-  }, 0);
-
+const Price = ({ total }) => {
   return (
     <Flex justifyContent="space-between" margin="3% 0">
       <Span fontSize="24px">예상금액</Span>
