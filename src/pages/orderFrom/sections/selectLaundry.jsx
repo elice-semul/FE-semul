@@ -1,16 +1,13 @@
-import { SlMagnifier } from 'react-icons/sl';
+import LabeledInputAndSelect from '../atoms/labeledInputAndSelect';
 
-import LabeledInputAndBtn from '../atoms/labeledInputAndBtn';
-const SelcetLaundry = ({ register, registerName }) => {
+const SelcetLaundry = ({ register, registerName, options }) => {
   return (
-    <LabeledInputAndBtn
-      placeholder="우리 동네 세탁소 찾기"
-      labelContent="세탁소선택"
+    <LabeledInputAndSelect
+      labelContent="세탁소 선택"
+      options={options.data}
       register={register}
       registerName={registerName}
-    >
-      <SlMagnifier size={30} />
-    </LabeledInputAndBtn>
+    />
   );
 };
 
