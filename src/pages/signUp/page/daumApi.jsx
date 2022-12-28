@@ -14,7 +14,7 @@ const DaumApi = (props) => {
         display: "block",
         position: "absolute",
         top: "20%",
-        width: "300px",
+        width: "400px",
         height: "400px",
         padding: "3px",
         zIndex: 100,
