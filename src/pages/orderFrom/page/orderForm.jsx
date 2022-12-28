@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,12 +15,20 @@ import Price from '../sections/price';
 import SelcetLaundry from '../sections/selectLaundry';
 import SpecTable from '../sections/specTable';
 
-import { Container, Form } from '@/pages/common/atoms/index';
+import { Container, Form, Loading } from '@/pages/common/atoms/index';
 import { PortalModal } from '@/pages/common/pages';
 import { Header } from '@/pages/common/sections';
 import { ErrorUtil } from '@/utils/errorUtil';
 
 const OrderForm = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!sessionStorage.getItem('Authorization')) {
+      navigate('/login');
+    }
+  });
+
   const [laundryTable, setLaundryTable] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [isModalShowing, setIsModalShowing] = useState(false);
@@ -33,7 +41,6 @@ const OrderForm = () => {
   const user = useGetCurrentUser(setValue);
   const mutation = usePostOrder();
 
-  const navigate = useNavigate();
   useMemo(() => {
     const total = laundryTable.reduce((acc, cur) => {
       const price = Number(cur.price) * Number(cur.qty);
@@ -44,9 +51,8 @@ const OrderForm = () => {
 
   const handleConfirmClick = () => setIsModalShowing(false);
   const handleMoneyModalCancel = () => setIsMoneyModalShowing(false);
-  const handleRedirectMypage = () => {
-    navigate('/myPage');
-  };
+  const handleRedirectMypage = () => navigate('/myPage');
+
   const handleLaundryRemoveBtnClick = (idx) => () => {
     setLaundryTable((prev) => {
       const copyList = [...prev];
@@ -120,7 +126,7 @@ const OrderForm = () => {
   };
 
   if ((product.status || laundry.status) === 'loading') {
-    return <Container>loading</Container>;
+    return <Loading />;
   }
 
   if (product.error || laundry.error) {

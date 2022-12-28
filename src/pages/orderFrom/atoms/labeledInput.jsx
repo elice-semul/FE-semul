@@ -8,6 +8,7 @@ const LabeledInput = ({
   placeholder,
   register,
   registerName,
+  ...props
 }) => {
   return (
     <Container height={height} width={width}>
@@ -20,6 +21,7 @@ const LabeledInput = ({
         register={register}
         registerName={registerName}
         type={inputType}
+        {...props}
       />
     </Container>
   );

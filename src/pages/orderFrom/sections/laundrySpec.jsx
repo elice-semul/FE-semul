@@ -43,6 +43,8 @@ const LaundrySpec = ({
         register={quantityRegister}
         registerName={quantityRegisterName}
         inputType="number"
+        defaultValue={1}
+        min={1}
       />
       <StyledBtnContainer>
         <Button
