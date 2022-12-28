@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 import LabeledInput from '../atoms/labeledInput';
 import SubmitBtn from '../atoms/submitBtn';
@@ -16,20 +17,36 @@ import SpecTable from '../sections/specTable';
 
 import { Container, Form } from '@/pages/common/atoms/index';
 import { PortalModal } from '@/pages/common/pages';
+import { Header } from '@/pages/common/sections';
 import { ErrorUtil } from '@/utils/errorUtil';
+
 const OrderForm = () => {
   const [laundryTable, setLaundryTable] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [isModalShowing, setIsModalShowing] = useState(false);
-
-  // const user = useGetCurrentUser();
-  const { product, laundry } = useGetLaundryAndProduct();
-  const mutation = usePostOrder();
+  const [isMoneyModalShowing, setIsMoneyModalShowing] = useState(false);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const { register, handleSubmit, getValues, setValue } = useForm();
 
-  const handleConfirmClick = () => setIsModalShowing(false);
+  const { product, laundry } = useGetLaundryAndProduct();
+  const user = useGetCurrentUser(setValue);
+  const mutation = usePostOrder();
 
+  const navigate = useNavigate();
+  useMemo(() => {
+    const total = laundryTable.reduce((acc, cur) => {
+      const price = Number(cur.price) * Number(cur.qty);
+      return acc + price;
+    }, 0);
+    setTotalPrice(total);
+  }, [laundryTable]);
+
+  const handleConfirmClick = () => setIsModalShowing(false);
+  const handleMoneyModalCancel = () => setIsMoneyModalShowing(false);
+  const handleRedirectMypage = () => {
+    navigate('/myPage');
+  };
   const handleLaundryRemoveBtnClick = (idx) => () => {
     setLaundryTable((prev) => {
       const copyList = [...prev];
@@ -43,9 +60,9 @@ const OrderForm = () => {
     if (sameLaundryIndex !== -1) {
       setLaundryTable((prev) => {
         const newTable = [...prev];
-        let acc = Number(newTable[t].qty);
+        let acc = Number(newTable[sameLaundryIndex].qty);
         acc += Number(getValues('quantity'));
-        newTable[t].qty = acc;
+        newTable[sameLaundryIndex].qty = acc;
         return newTable;
       });
       setValue('quantity', 1);
@@ -62,7 +79,7 @@ const OrderForm = () => {
     }
   };
 
-  const onSubmit = (data) => {
+  const preprocesPostData = (data) => {
     const laundeyOrders = laundryTable.map((item) => {
       const refinedArr = { id: item.id, qty: Number(item.qty) };
       return refinedArr;
@@ -79,16 +96,24 @@ const OrderForm = () => {
       pickUpDateTime: data.pickUpDateTime,
       wishLaundryDateTime: data.wishLaundryDateTime,
       address: {
-        roadAddr: '도로명 주소 몇 번길',
-        detailAddr: '몇동 몇호',
-        jibun: '지번 몇 번지',
+        roadAddr: user.address.roadAddr,
+        detailAddr: user.address.detailAddr,
+        jibun: user.address.jibun,
       },
       products: laundeyOrders,
       laundryId: laundryId[0].id,
     };
 
-    if (!ErrorUtil.invalidVariable(Object.values(postObj).every((v) => v))) {
+    return postObj;
+  };
+
+  const onSubmit = (data) => {
+    const postObj = preprocesPostData(data);
+    const valiedFlag = ErrorUtil.invalidVariable(Object.values(postObj).every((v) => v));
+    if (!valiedFlag.status) {
       setIsModalShowing(true);
+    } else if (totalPrice > user.money) {
+      setIsMoneyModalShowing(true);
     } else {
       mutation.mutate(postObj);
     }
@@ -104,6 +129,7 @@ const OrderForm = () => {
 
   return (
     <Container>
+      <Header>세탁신청</Header>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <OrderHeader />
         <PickupDate
@@ -113,12 +139,7 @@ const OrderForm = () => {
           selectRegisterName="pickUpMethod"
         />
         <SelcetLaundry register={register} registerName="laundryId" options={laundry} />
-        <LabeledInput
-          labelContent="주소"
-          register={register}
-          registerName="address"
-          // defaultValue={user.data.address.roadAddr}
-        />
+        <LabeledInput labelContent="주소" register={register} registerName="address" />
         {laundryTable.length !== 0 && (
           <SpecTable laundryTable={laundryTable} onRemoveBtnClick={handleLaundryRemoveBtnClick} />
         )}
@@ -134,7 +155,7 @@ const OrderForm = () => {
         />
         <DeliveryDate register={register} registerName="wishLaundryDateTime" />
         <LabeledInput labelContent="참고 및 유의사항" register={register} registerName="notice" />
-        <Price laundryTable={laundryTable} />
+        <Price total={totalPrice} />
         <SubmitBtn />
       </Form>
       {isModalShowing && (
@@ -143,6 +164,15 @@ const OrderForm = () => {
           onShow={setIsModalShowing}
           onConfirm={handleConfirmClick}
           cancelYn={false}
+        />
+      )}
+      {isMoneyModalShowing && (
+        <PortalModal
+          text="포인트가 부족해요! 충전하러가기"
+          onShow={setIsMoneyModalShowing}
+          onConfirm={handleRedirectMypage}
+          onCancel={handleMoneyModalCancel}
+          onSuccess={handleMoneyModalCancel}
         />
       )}
     </Container>

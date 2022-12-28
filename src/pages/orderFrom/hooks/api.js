@@ -1,9 +1,9 @@
 import { axiosAuthApi } from '@/utils/apiInstance';
 const BASE_URL = import.meta.env.VITE_BASE;
-const token = sessionStorage.getItem('Authorization');
 
 export const getProductApi = async () => {
   try {
+    const token = sessionStorage.getItem('Authorization');
     if (!token) throw new 'missing token: 권한 오류'();
 
     const instance = axiosAuthApi(BASE_URL, token);
@@ -17,6 +17,7 @@ export const getProductApi = async () => {
 
 export const getLaundryApi = async () => {
   try {
+    const token = sessionStorage.getItem('Authorization');
     if (!token) throw new 'missing token: 권한 오류'();
 
     const instance = axiosAuthApi(BASE_URL, token);
@@ -30,7 +31,9 @@ export const getLaundryApi = async () => {
 
 export const postOrderApi = async (postObj) => {
   try {
+    const token = sessionStorage.getItem('Authorization');
     if (!token) throw new 'missing token: 권한 오류'();
+
     const instance = axiosAuthApi(BASE_URL, token);
     const { data } = await instance.post('/orders', postObj);
 
@@ -42,7 +45,9 @@ export const postOrderApi = async (postObj) => {
 
 export const getCurrentUserApi = async () => {
   try {
+    const token = sessionStorage.getItem('Authorization');
     if (!token) throw new 'missing token: 권한 오류'();
+
     const instance = axiosAuthApi(BASE_URL, token);
     const { data } = await instance.get('/users');
 
