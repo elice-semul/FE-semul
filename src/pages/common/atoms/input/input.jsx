@@ -25,7 +25,7 @@ const Input = ({
         {...{ width }}
         {...{ height }}
         {...{ type }}
-        {...register(registerName, { require: '필수값을 확인하세요' })}
+        {...register(registerName)}
         {...props}
       />
     );
