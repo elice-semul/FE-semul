@@ -10,6 +10,7 @@ import { StyledSignUpButton, StyledSignUpDiv, StyledSignUpContainer, StyledSignU
 import { Form } from '@/pages/common/atoms'
 import DaumApi  from '@/pages/signup/page/daumApi';
 import UpdateInput from '@/pages/userUpdateform/atoms/updateInput/updateInput';
+import SignUpSpan from "@/pages/signup/atoms/signUpSpan/signUpSpan";
 
 const BASE_URL  = import.meta.env.VITE_BASE
 
@@ -48,6 +49,7 @@ const UpDateFormContainer = ({ userState }) => {
       'phoneNumber':userState.phoneNumber,
       'detailAddress':userState.address?.detailAddr,
     });
+    setUpdateCheck(true);
   }
 
   const updateSubmit = async (e) => {
@@ -112,15 +114,16 @@ const UpDateFormContainer = ({ userState }) => {
   return (
     <StyledSignUpContainer>
      <StyledSignUpTitle>회원정보</StyledSignUpTitle>
+      {<SignUpSpan text={updateCheck && '빨간 항목만 수정가능 합니다'}></SignUpSpan>}
       <Form onSubmit={updateSubmit}>
         <UpdateInput labelText='이름' readonly={readonly} htmlFor='name' id='name' values={values} value={userState.name}  setValues={setValues} type='text'/>
-        <UpdateInput labelText='전화번호' readonly={readonly} htmlFor='phoneNumber' id='phoneNumber' values={values}  value={userState.phoneNumber}  setValues={setValues} type='number'/>
+        <UpdateInput labelText='전화번호' readonly={true} htmlFor='phoneNumber' id='phoneNumber' values={values}  value={userState.phoneNumber}  setValues={setValues} type='number'/>
         <StyledSignUpDiv>
           {!readonly &&<StyledSignUpButton type="button" value="주소찾기" onClick={() => setDaumApi(!daumApi)} />}
         <UpdateInput labelText='주소' readonly={readonly} htmlFor='address' id='address' values={values}  value={ address || userState.address?.roadAddr} setValues={setValues}  type='text'/>
         </StyledSignUpDiv>
           <UpdateInput labelText='상세주소'  readonly={readonly} htmlFor='detailAddress' values={values}  value={userState.address?.detailAddr} id='detailAddress' setValues={setValues}  className='detailAddress' type='text'/>
-        <UpdateInput labelText='이메일'  readonly={readonly} htmlFor='email' id='email' values={values} value={userState.email} type='email' setValues={setValues} />
+        <UpdateInput labelText='이메일'  readonly={true} htmlFor='email' id='email' values={values} value={userState.email} type='email' setValues={setValues} />
         <UpdateInput labelText='새 비밀번호'  readonly={readonly} htmlFor='password' id='password' values={values}  value={values.password} type='password' setValues={setValues} setPassword={setPassword} />
         {!readonly && <StyledSignUpSubmit>수정완료</StyledSignUpSubmit>}
       </Form>

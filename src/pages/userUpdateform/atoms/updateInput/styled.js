@@ -6,7 +6,7 @@ export const StyledUpdateInput = styled.input`
   background-color: ${ theme.colors.gray100 };
   width: 100%;
   height: 40px;
-  border: 0;
+  border: ${({ border }) => (border || '1px solid blue') };
   border-radius: 1.5rem;
   font-size: 1.6rem;
   padding: 0 1.6rem;
