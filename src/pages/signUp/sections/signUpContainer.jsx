@@ -67,7 +67,7 @@ const SignUpContainer = () => {
          'jibun': lastAddr[lastAddr.length - 1],
        }
     }
-    console.log(BASE_URL);
+
       axios.post(`${BASE_URL}/users/signup`,body)
           .then((data) => {
             if(data.status === 201){

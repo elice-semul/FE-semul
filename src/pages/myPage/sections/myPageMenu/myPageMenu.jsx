@@ -46,8 +46,11 @@ const MyPageMenu = () => {
       removeUserInfo(navigate);
     } else if (menuStatus === MENU_STATUS.WITHDRAW) {
       withDrawUser.mutate();
+    }else if (menuStatus === MENU_STATUS.MODIFIED) {
+      navigate('/updateUser');
     }
   };
+
 
   const handleCancelClick = () => {
     setIsModalShowing(false);
