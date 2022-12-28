@@ -9,13 +9,14 @@ const LabeledInputAndSelect = ({ labelContent, options, register, registerName }
         {labelContent}
       </Label>
       <S.StyledSelect {...register(registerName)}>
-        {options.map((value) => {
-          return (
-            <S.StyledOption key={value.id} key-data={value.id}>
-              {value.name}
-            </S.StyledOption>
-          );
-        })}
+        {options &&
+          options.map((value) => {
+            return (
+              <S.StyledOption key={value.id} key-data={value.id}>
+                {value.name}
+              </S.StyledOption>
+            );
+          })}
       </S.StyledSelect>
     </Container>
   );

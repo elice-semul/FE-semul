@@ -5,8 +5,8 @@ import * as API from './api';
 const useGetLaundryAndProduct = () => {
   const result = useQueries({
     queries: [
-      { queryKey: ['product'], queryFn: API.getProductApi, staleTime: Infinity, suspense: true },
-      { queryKey: ['laundry'], queryFn: API.getLaundryApi, staleTime: Infinity, suspense: true },
+      { queryKey: ['product'], queryFn: API.getProductApi },
+      { queryKey: ['laundry'], queryFn: API.getLaundryApi },
     ],
   });
 
