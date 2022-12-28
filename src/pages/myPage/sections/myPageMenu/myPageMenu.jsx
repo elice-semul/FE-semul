@@ -4,7 +4,6 @@ import { IoWalletOutline } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 
 import useMyPage from '@/hooks/useMyPage';
-import useWallet from '@/hooks/useWallet';
 import { PortalModal } from '@/pages/common/pages';
 import { Ul, Li } from '@/pages/myPage/atoms';
 import { removeUserInfo } from '@/utils/removeUserInfo';
@@ -46,11 +45,10 @@ const MyPageMenu = () => {
       removeUserInfo(navigate);
     } else if (menuStatus === MENU_STATUS.WITHDRAW) {
       withDrawUser.mutate();
-    }else if (menuStatus === MENU_STATUS.MODIFIED) {
+    } else if (menuStatus === MENU_STATUS.MODIFIED) {
       navigate('/updateUser');
     }
   };
-
 
   const handleCancelClick = () => {
     setIsModalShowing(false);
