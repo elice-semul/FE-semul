@@ -1,8 +1,8 @@
 import { StyledSignUpSpan }  from './styled';
 
-const SignUpSpan = ({ text }) => {
+const SignUpSpan = ({ text, color }) => {
     return (
-        <StyledSignUpSpan>{text}</StyledSignUpSpan>
+        <StyledSignUpSpan color={color}>{text}</StyledSignUpSpan>
     );
 };
 

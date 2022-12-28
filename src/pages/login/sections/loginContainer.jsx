@@ -62,8 +62,6 @@ const LoginContainer = () => {
     setIsModalShowing(false);
   };
 
-
-
   return (
     <StyledLoginContainer>
       <StyledLogo>새물</StyledLogo>

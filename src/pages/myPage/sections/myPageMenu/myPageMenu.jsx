@@ -9,7 +9,7 @@ import { Ul, Li } from '@/pages/myPage/atoms';
 import { removeUserInfo } from '@/utils/removeUserInfo';
 
 const mock = [
-  { type: 'modified', icon: <FiUser size="3.2rem" />, text: '회원 정보 수정' },
+  { type: 'modified', icon: <FiUser size="3.2rem" />, text: '회원 정보' },
   { type: 'wallet', icon: <IoWalletOutline size="3.2rem" />, text: '지갑' },
   { type: 'logout', icon: <FiLogOut size="3.2rem" />, text: '로그아웃' },
   { type: 'withdraw', icon: <FiUserX size="3.2rem" />, text: '회원탈퇴' },
@@ -36,6 +36,9 @@ const MyPageMenu = () => {
   });
 
   const handleModalMenuClick = (text) => {
+    if (text === '회원 정보') {
+      navigate('/updateUser');
+    }
     setIsModalShowing(true);
     setModalText(text);
   };
@@ -45,8 +48,6 @@ const MyPageMenu = () => {
       removeUserInfo(navigate);
     } else if (menuStatus === MENU_STATUS.WITHDRAW) {
       withDrawUser.mutate();
-    } else if (menuStatus === MENU_STATUS.MODIFIED) {
-      navigate('/updateUser');
     }
   };
 

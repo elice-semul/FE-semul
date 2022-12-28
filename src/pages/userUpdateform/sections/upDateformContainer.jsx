@@ -11,6 +11,7 @@ import { Form } from '@/pages/common/atoms'
 import DaumApi  from '@/pages/signup/page/daumApi';
 import UpdateInput from '@/pages/userUpdateform/atoms/updateInput/updateInput';
 import SignUpSpan from "@/pages/signup/atoms/signUpSpan/signUpSpan";
+import { theme } from '@/styles/theme';
 
 const BASE_URL  = import.meta.env.VITE_BASE
 
@@ -113,8 +114,8 @@ const UpDateFormContainer = ({ userState }) => {
 
   return (
     <StyledSignUpContainer>
-     <StyledSignUpTitle>회원정보</StyledSignUpTitle>
-      {<SignUpSpan text={updateCheck && '빨간 항목만 수정가능 합니다'}></SignUpSpan>}
+     <StyledSignUpTitle>{!updateCheck ? '회원 정보' : '회원 정보 수정'}</StyledSignUpTitle>
+      {<SignUpSpan color={theme.colors.primary} text={updateCheck && '표시된 항목만 수정가능 합니다'}></SignUpSpan>}
       <Form onSubmit={updateSubmit}>
         <UpdateInput labelText='이름' readonly={readonly} htmlFor='name' id='name' values={values} value={userState.name}  setValues={setValues} type='text'/>
         <UpdateInput labelText='전화번호' readonly={true} htmlFor='phoneNumber' id='phoneNumber' values={values}  value={userState.phoneNumber}  setValues={setValues} type='number'/>
@@ -124,7 +125,7 @@ const UpDateFormContainer = ({ userState }) => {
         </StyledSignUpDiv>
           <UpdateInput labelText='상세주소'  readonly={readonly} htmlFor='detailAddress' values={values}  value={userState.address?.detailAddr} id='detailAddress' setValues={setValues}  className='detailAddress' type='text'/>
         <UpdateInput labelText='이메일'  readonly={true} htmlFor='email' id='email' values={values} value={userState.email} type='email' setValues={setValues} />
-        <UpdateInput labelText='새 비밀번호'  readonly={readonly} htmlFor='password' id='password' values={values}  value={values.password} type='password' setValues={setValues} setPassword={setPassword} />
+        {updateCheck && <UpdateInput labelText='새 비밀번호'  readonly={readonly} htmlFor='password' id='password' values={values}  value={values.password} type='password' setValues={setValues} setPassword={setPassword} />}
         {!readonly && <StyledSignUpSubmit>수정완료</StyledSignUpSubmit>}
       </Form>
       {readonly && <StyledSignUpSubmit onClick={() => {setValue(); setReadOnly(!readonly)}}>수정하기</StyledSignUpSubmit>}

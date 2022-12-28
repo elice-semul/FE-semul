@@ -12,4 +12,5 @@ export const StyleLoginButton = styled.button`
   border-bottom: none;
   border-radius: ${theme.buttons.borderRadius};
   margin-bottom: 0.9rem;
+  cursor: pointer;
 `

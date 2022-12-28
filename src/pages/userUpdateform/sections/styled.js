@@ -17,6 +17,7 @@ export const StyledSignUpButton = styled.input`
   padding: 0 1.5rem;
   height: 40px;
   border-radius: 10px;
+  cursor: pointer;
 `;
 
 export const StyledSignUpTitle = styled.h3`
@@ -43,4 +44,5 @@ export const StyledSignUpSubmit = styled.button`
   padding:1.1rem 4.6rem;
   fontSize:1.6rem;
   border-radius:10px;
+  cursor:pointer;
 `;
