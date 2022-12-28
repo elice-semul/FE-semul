@@ -142,7 +142,7 @@ const UpdateInput = ({
                             onBlur={handleContainerChange}
                             onChange={handleContainerChange}
                             readOnly={!!readonly}
-                            border={!readonly && 'solid red'}
+                            border={!readonly && 'solid #3DA9FC'}
                             defaultValue={value} name={id} type={type}/>
             {updateAlert[`${id}`] && <SignUpSpan text ={updateAlert[`${id}`]} />}
         </>
