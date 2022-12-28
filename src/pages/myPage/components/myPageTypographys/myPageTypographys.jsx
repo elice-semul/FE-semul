@@ -3,7 +3,7 @@ import { Typography } from '@/pages/common/sections';
 const MyPageTypographys = ({ money }) => {
   return (
     <>
-      <Typography text="새물님 안녕하세요." strongText="새물" />
+      <Typography text="고객님 안녕하세요." strongText="고객" />
       <Typography
         text="지갑에 현재 잔액은"
         strongText="잔액"
