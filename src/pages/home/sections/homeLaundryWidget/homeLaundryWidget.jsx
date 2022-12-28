@@ -10,9 +10,8 @@ import { ORDER_STATUS } from '@/utils/orderStatus';
 
 const HomeLaundrtWidget = ({ currentUser }) => {
   const token = sessionStorage.getItem('Authorization');
-  const { currentOrderQuery } = useCurrentOrder();
-
   if (token) {
+    const { currentOrderQuery } = useCurrentOrder();
     const { status, data: currentOrders, error } = currentOrderQuery;
     if (status === 'error') {
       throw new Error(error.message);
