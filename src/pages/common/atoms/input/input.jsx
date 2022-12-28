@@ -12,6 +12,7 @@ const Input = ({
   type,
   register,
   registerName,
+  ...props
 }) => {
   if (register && registerName) {
     return (
@@ -25,6 +26,7 @@ const Input = ({
         {...{ height }}
         {...{ type }}
         {...register(registerName, { require: '필수값을 확인하세요' })}
+        {...props}
       />
     );
   }
@@ -38,6 +40,7 @@ const Input = ({
       {...{ width }}
       {...{ height }}
       {...{ type }}
+      {...props}
     />
   );
 };
