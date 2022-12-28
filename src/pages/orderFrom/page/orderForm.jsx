@@ -1,10 +1,11 @@
-import { useQuery, useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 
 import LabeledInput from '../atoms/labeledInput';
 import SubmitBtn from '../atoms/submitBtn';
+import useGetCurrentUser from '../hooks/useGetCurrentUser';
+import useGetLaundryAndProduct from '../hooks/useGetLaundryAndProduct';
+import usePostOrder from '../hooks/usePostOrder';
 import DeliveryDate from '../sections/deliveryDate';
 import LaundrySpec from '../sections/laundrySpec';
 import OrderHeader from '../sections/orderHeader';
@@ -14,16 +15,20 @@ import SelcetLaundry from '../sections/selectLaundry';
 import SpecTable from '../sections/specTable';
 
 import { Container, Form } from '@/pages/common/atoms/index';
-import * as API from '@/utils/api';
+import { PortalModal } from '@/pages/common/pages';
+import { ErrorUtil } from '@/utils/errorUtil';
 const OrderForm = () => {
   const [laundryTable, setLaundryTable] = useState([]);
   const [inputValue, setInputValue] = useState('');
+  const [isModalShowing, setIsModalShowing] = useState(false);
+
+  // const user = useGetCurrentUser();
+  const { product, laundry } = useGetLaundryAndProduct();
+  const mutation = usePostOrder();
 
   const { register, handleSubmit, getValues, setValue } = useForm();
-  const { status, data: product, error } = useQuery(['product'], API.getProduct);
-  const mutation = useMutation(['order'], API.postOrder);
 
-  const navigate = useNavigate();
+  const handleConfirmClick = () => setIsModalShowing(false);
 
   const handleLaundryRemoveBtnClick = (idx) => () => {
     setLaundryTable((prev) => {
@@ -34,14 +39,27 @@ const OrderForm = () => {
   };
 
   const handleLaundryAddBtnClick = (itemObj) => {
-    setValue('option', inputValue);
-    const products = {
-      ...itemObj,
-      qty: getValues('quantity'),
-    };
-    setValue('quantity', 1);
-    setLaundryTable([products, ...laundryTable]);
-    setInputValue('');
+    const sameLaundryIndex = laundryTable.findIndex((value) => value.id === itemObj.id);
+    if (sameLaundryIndex !== -1) {
+      setLaundryTable((prev) => {
+        const newTable = [...prev];
+        let acc = Number(newTable[t].qty);
+        acc += Number(getValues('quantity'));
+        newTable[t].qty = acc;
+        return newTable;
+      });
+      setValue('quantity', 1);
+      setInputValue('');
+    } else {
+      setValue('option', inputValue);
+      const products = {
+        ...itemObj,
+        qty: getValues('quantity'),
+      };
+      setValue('quantity', 1);
+      setLaundryTable([products, ...laundryTable]);
+      setInputValue('');
+    }
   };
 
   const onSubmit = (data) => {
@@ -50,7 +68,11 @@ const OrderForm = () => {
       return refinedArr;
     });
 
-    const obj = {
+    const laundryId = laundry.data.filter((value) => {
+      return value.name === getValues('laundryId');
+    });
+
+    const postObj = {
       status: 'connect',
       pickUpMethod: data.pickUpMethod,
       notice: data.notice,
@@ -62,22 +84,21 @@ const OrderForm = () => {
         jibun: '지번 몇 번지',
       },
       products: laundeyOrders,
-      laundryId: '14112ad5-5238-4eab-abc1-b41ec66ef238',
+      laundryId: laundryId[0].id,
     };
-    mutation.mutate(obj, {
-      onSuccess: (data) => {
-        navigate('complete', {
-          state: { id: data.id },
-        });
-      },
-    });
+
+    if (!ErrorUtil.invalidVariable(Object.values(postObj).every((v) => v))) {
+      setIsModalShowing(true);
+    } else {
+      mutation.mutate(postObj);
+    }
   };
 
-  if (status === 'loading') {
+  if ((product.status || laundry.status) === 'loading') {
     return <Container>loading</Container>;
   }
 
-  if (error) {
+  if (product.error || laundry.error) {
     return <Container>error</Container>;
   }
 
@@ -91,13 +112,18 @@ const OrderForm = () => {
           selectRegister={register}
           selectRegisterName="pickUpMethod"
         />
-        <SelcetLaundry register={register} registerName="laundryId" />
-        <LabeledInput labelContent="주소" register={register} registerName="address" />
+        <SelcetLaundry register={register} registerName="laundryId" options={laundry} />
+        <LabeledInput
+          labelContent="주소"
+          register={register}
+          registerName="address"
+          // defaultValue={user.data.address.roadAddr}
+        />
         {laundryTable.length !== 0 && (
           <SpecTable laundryTable={laundryTable} onRemoveBtnClick={handleLaundryRemoveBtnClick} />
         )}
         <LaundrySpec
-          options={product}
+          options={product.data}
           register={register}
           registerName="option"
           quantityRegister={register}
@@ -111,6 +137,14 @@ const OrderForm = () => {
         <Price laundryTable={laundryTable} />
         <SubmitBtn />
       </Form>
+      {isModalShowing && (
+        <PortalModal
+          text="정보를 모두 입력해주세요."
+          onShow={setIsModalShowing}
+          onConfirm={handleConfirmClick}
+          cancelYn={false}
+        />
+      )}
     </Container>
   );
 };
