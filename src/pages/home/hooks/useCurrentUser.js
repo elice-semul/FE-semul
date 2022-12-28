@@ -14,6 +14,7 @@ const useCurrnetUser = () => {
       });
       return () => queryClient.setQueryData(['currentUser'], prevUser);
     },
+    onSuccess: () => queryClient.invalidateQueries(['currentUser']),
     onError: (err, values, rollback) => {
       if (rollback) {
         rollback();
