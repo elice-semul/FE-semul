@@ -8,7 +8,7 @@ import { StyledLogo, StyledLoginContainer, StyledLoginSpan } from './styled';
 import { Form } from '@/pages/common/atoms';
 import PortalModal from '@/pages/common/pages/portalModal/portalModal';
 import { LoginInput, LoginButton } from '@/pages/login/atoms';
-
+const BASE_URL  = import.meta.env.VITE_BASE
 const LoginContainer = () => {
   const [account, setAccount] = useState({
     email: '',
@@ -27,12 +27,11 @@ const LoginContainer = () => {
     }
     setLoginAlert(newLoginAlert);
     if (account.password && account.email) {
-      await axios.post('http://34.64.61.59:3000/users/login', {
+      await axios.post(`${BASE_URL}/users/login`, {
         email: account.email,
         password: account.password,
       })
       .then((response) => {
-        console.log('loginData!!' + response)
         if (response.data.access_token) {
           sessionStorage.setItem('Authorization', response.data.access_token);
           navigate('/');

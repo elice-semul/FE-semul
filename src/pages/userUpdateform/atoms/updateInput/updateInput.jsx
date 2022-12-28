@@ -13,8 +13,11 @@ const UpdateInput = ({
     value, 
     values,
     readonly,
-    setValues 
+    setValues,
+    setPassword,
+
 }) => {
+
     const [updateAlert, setUpdateAlert] = useState({
         name:'',
         phoneNumber: '',
@@ -25,9 +28,6 @@ const UpdateInput = ({
         passwordCheck:''
     });
 
-    useEffect(() => {
-
-    },[updateAlert]);
 
     const handleContainerChange = (e) => {
         const korean = /^[ㄱ-ㅎ|가-힣]+$/;
@@ -40,16 +40,21 @@ const UpdateInput = ({
                 ...updateAlert,
                 [e.target.id]: '',
             })
-        }else{
+        }
+
+        if(e.target.id !== 'password' && e.target.value === ''){
             setUpdateAlert({
                 ...updateAlert,
                 [e.target.id]: labelText + '를 입력해 주세요',
             })
         }
-        setValues({
-            ...values,
-            [e.target.id]: e.target.value,
-        })
+
+        if(e.target.id !== 'password') {
+            setValues({
+                ...values,
+                [e.target.id]: e.target.value,
+            })
+        }
 
         if(e.target.id === 'name'){
             if(!korean.test(e.target.value)){
@@ -68,6 +73,7 @@ const UpdateInput = ({
                 })
             }
         }
+
         if(e.target.id === 'phoneNumber'){
             if(!phone.test(e.target.value)){
                 setUpdateAlert({
@@ -85,23 +91,7 @@ const UpdateInput = ({
                 })
             }
         }
-        if(e.target.id === 'password'){
-            if(!passCheck.test(e.target.value)){
-                setUpdateAlert({
-                    ...updateAlert,
-                    'password': '숫자+영문자+특수문자 조합으로 8자리 이상 입력가능합니다.',
-                })
-                setValues({
-                    ...values,
-                    'password': '',
-                })
-            }else{
-                setValues({
-                    ...values,
-                    'password':  e.target.value,
-                })
-            }
-        }
+
         if(e.target.id === 'email'){
             if(!emailCheck.test(e.target.value)){
                 setUpdateAlert({
@@ -119,21 +109,26 @@ const UpdateInput = ({
                 })
             }
         }
-        if(values.password && e.target.id === 'passwordCheck'){
-            if(values.password !== e.target.value){
-                setUpdateAlert({
-                    ...updateAlert,
-                    'passwordCheck': '비밀번호가 일치하지 않습니다.',
-                })
-                setValues({
-                    ...values,
-                    'passwordCheck': '',
-                })
+
+        if(e.target.id === 'password'){
+            if(!passCheck.test(e.target.value)){
+                if(e.target.value){
+                    setUpdateAlert({
+                        ...updateAlert,
+                        'password': '숫자+영문자+특수문자 조합으로 8자리 이상 입력가능합니다.',
+                    })
+                    setPassword('fail');
+                }else{
+                    setUpdateAlert({
+                        ...updateAlert,
+                        'password': '',
+                    })
+                    setPassword(e.target.value);
+                }
+
             }else{
-                setValues({
-                    ...values,
-                    'passwordCheck': e.target.value,
-                })
+                setPassword(e.target.value);
+
             }
         }
     };
@@ -147,6 +142,7 @@ const UpdateInput = ({
                             onBlur={handleContainerChange}
                             onChange={handleContainerChange}
                             readOnly={!!readonly}
+                            border={!readonly && 'solid red'}
                             defaultValue={value} name={id} type={type}/>
             {updateAlert[`${id}`] && <SignUpSpan text ={updateAlert[`${id}`]} />}
         </>

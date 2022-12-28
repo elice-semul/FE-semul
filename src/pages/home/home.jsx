@@ -1,14 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 
-import { getCurrentUserApi } from './hooks/api';
+import useCurrnetUser from './hooks/useCurrentUser';
 import { HomeHeader, HomeBtnWrap, HomeLaundrtWidget, HomeBanner } from './sections/index';
 import { StyledHomePageContainer } from './styled';
 
 const Home = () => {
   const token = sessionStorage.getItem('Authorization');
   if (token) {
-    const { status, data: currentUser, error } = useQuery(['currentUser'], getCurrentUserApi);
+    const { currentUserQuery } = useCurrnetUser();
+
+    const { status, data: currentUser, error } = currentUserQuery;
     if (status === 'error') {
       throw new Error(error);
     }

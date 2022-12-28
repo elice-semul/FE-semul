@@ -54,6 +54,11 @@ const OrderDetailCardContainer = ({
       setIsLeftBtn(true);
       return;
     }
+    if (renderingStatus === ORDER_STATUS.CANCEL) {
+      setIsRightBtn(false);
+      setIsLeftBtn(false);
+      return;
+    }
     if (order.status !== ORDER_STATUS.COMPLETE && order.status === renderingStatus) {
       setIsRightBtn(false);
       setIsLeftBtn(true);

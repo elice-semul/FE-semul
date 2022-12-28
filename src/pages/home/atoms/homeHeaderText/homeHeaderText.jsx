@@ -30,7 +30,7 @@ const HomeHeaderText = ({ address, queryStatus, currentUser }) => {
       {isModalShowing && (
         <AddressFormPortal
           text="주소 변경"
-          successText="주소 변경 완료"
+          successText="배송 주소를 변경하시겠습니까?"
           onShow={setIsModalShowing}
           onConfirm={handleConfirmClick}
           onCancel={handleCancelClick}

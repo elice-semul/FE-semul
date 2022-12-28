@@ -1,9 +1,8 @@
 export const ErrorUtil = {
   invalidVariable(target) {
-    if (!target) {
+    if (!target || target.length === 0) {
       return {
         status: false,
-        target,
       };
     }
     return {

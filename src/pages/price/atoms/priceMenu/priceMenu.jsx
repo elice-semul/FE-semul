@@ -4,7 +4,7 @@ import { StyledPriceFlex } from './styled';
 
 import {Button} from '@/pages/common/atoms';
 
-const PriceMenu = ({orgPrice ,setPrice ,setCate}) => {
+const PriceMenu = ({orgPrice ,setPrice ,setCate }) => {
   const navigate = useNavigate();
   const menu = [
     'ALL',
@@ -16,25 +16,10 @@ const PriceMenu = ({orgPrice ,setPrice ,setCate}) => {
     'REPAIR',
     'STORAGE'
   ];
-  const backColor = [
-    'yellow',
-    'green',
-    'red',
-    'purple',
-    'pink',
-    'light',
-    'skyblue',
-    'snow'
-  ]
+
 
   const handleBtnClick = (value) => {
     setCate(value);
-    if(value === 'ALL' ){
-      setPrice(orgPrice);
-    }else{
-      const result = orgPrice.filter(orgPrice => orgPrice.category === value);
-      setPrice(result);
-    }
   };
 
   const menuMock = menu.map((text, index) => (

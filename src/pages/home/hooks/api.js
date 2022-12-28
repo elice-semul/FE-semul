@@ -18,13 +18,17 @@ export const getCurrentOrdersApi = async () => {
     const authInstance = axiosAuthApi(BASE_URL, token);
     const { data } = await authInstance.get('/orders');
     return data;
-  } catch (e) {
+  } catch (err) {
     throw new Error(err);
   }
 };
 
-// export const updateUserAddressApi = async (updateUser) => {
-//   try {
-
-//   } catch (e) {}
-// };
+export const updateUserAddressApi = async ({ updateUser }) => {
+  try {
+    const token = sessionStorage.getItem('Authorization');
+    const authInstance = axiosAuthApi(BASE_URL, token);
+    return await authInstance.put('/users', updateUser);
+  } catch (err) {
+    throw new Error(err);
+  }
+};
