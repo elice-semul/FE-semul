@@ -19,6 +19,13 @@ import { Container, Form, Loading } from '@/pages/common/atoms/index';
 import { PortalModal } from '@/pages/common/pages';
 import { Header } from '@/pages/common/sections';
 import { ErrorUtil } from '@/utils/errorUtil';
+import { ORDER_STATUS } from '@/utils/orderStatus';
+
+const ERROR_TEXT = {
+  EMPTY: '정보를 모두 입력해주세요!',
+  MONEY: '잔액이 부족해요! 충전하러 가기',
+  WRONG: '세탁물을 확인해주세요!',
+};
 
 const OrderForm = () => {
   const navigate = useNavigate();
@@ -32,14 +39,13 @@ const OrderForm = () => {
   const [laundryTable, setLaundryTable] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [isModalShowing, setIsModalShowing] = useState(false);
-  const [isMoneyModalShowing, setIsMoneyModalShowing] = useState(false);
+  const [errorText, setErrorText] = useState('');
   const [totalPrice, setTotalPrice] = useState(0);
 
   const { register, handleSubmit, getValues, setValue } = useForm();
-
-  const { product, laundry } = useGetLaundryAndProduct();
   const user = useGetCurrentUser(setValue);
   const mutation = usePostOrder();
+  const { product, laundry } = useGetLaundryAndProduct();
 
   useMemo(() => {
     const total = laundryTable.reduce((acc, cur) => {
@@ -49,9 +55,11 @@ const OrderForm = () => {
     setTotalPrice(total);
   }, [laundryTable]);
 
-  const handleConfirmClick = () => setIsModalShowing(false);
-  const handleMoneyModalCancel = () => setIsMoneyModalShowing(false);
-  const handleRedirectMypage = () => navigate('/myPage');
+  const handleConfirmClick = () => {
+    if (errorText === ERROR_TEXT.EMPTY || errorText === ERROR_TEXT.WRONG) setIsModalShowing(false);
+    else navigate('/myPage');
+  };
+  const handleMoneyModalCancel = () => setIsModalShowing(false);
 
   const handleLaundryRemoveBtnClick = (idx) => () => {
     setLaundryTable((prev) => {
@@ -62,12 +70,18 @@ const OrderForm = () => {
   };
 
   const handleLaundryAddBtnClick = (itemObj) => {
+    if (Object.values(itemObj).length === 0) {
+      setErrorText(ERROR_TEXT.WRONG);
+      setIsModalShowing(true);
+      return;
+    }
+
     const sameLaundryIndex = laundryTable.findIndex((value) => value.id === itemObj.id);
+
     if (sameLaundryIndex !== -1) {
       setLaundryTable((prev) => {
         const newTable = [...prev];
-        let acc = Number(newTable[sameLaundryIndex].qty);
-        acc += Number(getValues('quantity'));
+        const acc = Number(newTable[sameLaundryIndex].qty) + Number(getValues('quantity'));
         newTable[sameLaundryIndex].qty = acc;
         return newTable;
       });
@@ -96,7 +110,7 @@ const OrderForm = () => {
     });
 
     const postObj = {
-      status: 'connect',
+      status: ORDER_STATUS.CONNECT,
       pickUpMethod: data.pickUpMethod,
       notice: data.notice,
       pickUpDateTime: data.pickUpDateTime,
@@ -117,9 +131,11 @@ const OrderForm = () => {
     const postObj = preprocesPostData(data);
     const valiedFlag = ErrorUtil.invalidVariable(Object.values(postObj).every((v) => v));
     if (!valiedFlag.status) {
+      setErrorText(ERROR_TEXT.EMPTY);
       setIsModalShowing(true);
     } else if (totalPrice > user.money) {
-      setIsMoneyModalShowing(true);
+      setErrorText(ERROR_TEXT.MONEY);
+      setIsModalShowing(true);
     } else {
       mutation.mutate(postObj);
     }
@@ -166,19 +182,10 @@ const OrderForm = () => {
       </Form>
       {isModalShowing && (
         <PortalModal
-          text="정보를 모두 입력해주세요."
+          text={errorText}
           onShow={setIsModalShowing}
           onConfirm={handleConfirmClick}
-          cancelYn={false}
-        />
-      )}
-      {isMoneyModalShowing && (
-        <PortalModal
-          text="포인트가 부족해요! 충전하러가기"
-          onShow={setIsMoneyModalShowing}
-          onConfirm={handleRedirectMypage}
           onCancel={handleMoneyModalCancel}
-          onSuccess={handleMoneyModalCancel}
         />
       )}
     </Container>
