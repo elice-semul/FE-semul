@@ -12,7 +12,7 @@ import {
   OrderForm,
   OrderComplete,
   OrderList,
-  UserUpdateForm,
+  UserUpDateForm,
   NotFound,
 } from '@/pages';
 
@@ -30,7 +30,7 @@ function Router() {
         <Route path="/washing" element={<OrderForm />} />
         <Route path="/washing/complete" element={<OrderComplete />} />
         <Route path="/history" element={<OrderList />} />
-        <Route path="/updateUser" element={<UserUpdateForm />} />
+        <Route path="/updateUser" element={<UserUpDateForm />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
