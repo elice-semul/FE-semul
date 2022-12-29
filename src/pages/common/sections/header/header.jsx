@@ -8,12 +8,16 @@ import { Button, Flex } from '@/pages/common/atoms'
 const Header = ({ children }) => {
   const navigate = useNavigate();
   const handleBtnClick = () => {
-    navigate(-1);
+    if(children === '로그인'){
+      navigate('/');
+    }else{
+      navigate(-1);
+    }
   }
   return (
     <StyledDiv>
       <Flex alignItems='center'>
-        <Button margin='0' padding='1.2rem' border='none' onBtnClick={handleBtnClick}>
+        <Button type='button' margin='0' padding='1.2rem' border='none' onBtnClick={handleBtnClick}>
           <IoArrowBackOutline fontSize='2rem'/>
         </Button>
         <StyledH6>{children}</StyledH6>

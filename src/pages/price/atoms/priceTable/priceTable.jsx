@@ -8,7 +8,7 @@ const priceTable =  ({ price ,cate, setSort,sort}) => {
 const list = price.map((i,index) => (
     <tr key={index}>
       <td>{i.name}</td>
-      <td>{i.price}원</td>
+      <td>{i.price.toLocaleString()}원</td>
     </tr>
 ));
 
