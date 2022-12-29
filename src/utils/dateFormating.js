@@ -15,5 +15,7 @@ export const deteFormatForOrderHistory = (pickUpDateTime, wishLaundryDateTime) =
 
 export const dateFormatCommon = (date) => {
   const formatingDate = new Date(date);
-  return `${formatingDate.getFullYear()}-${formatingDate.getMonth()}-${formatingDate.getDate()}`;
+  return `${formatingDate.getFullYear()}-${
+    formatingDate.getMonth() + 1
+  }-${formatingDate.getDate()}`;
 };
