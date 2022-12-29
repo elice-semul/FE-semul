@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { theme } from '@/styles/theme' 
+import { theme } from '@/styles/theme';
 
 export const StyleLoginButton = styled.button`
   background-color: ${theme.colors.primary};
@@ -13,4 +13,4 @@ export const StyleLoginButton = styled.button`
   border-radius: ${theme.buttons.borderRadius};
   margin-bottom: 0.9rem;
   cursor: pointer;
-`
+`;

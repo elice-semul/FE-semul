@@ -1,7 +1,7 @@
-import PriceContainer from '../sections/priceContainer'
+import PriceContainer from '../sections/priceContainer';
 
 const Price = () => {
-  return <PriceContainer/>
+  return <PriceContainer />;
 };
 
 export default Price;

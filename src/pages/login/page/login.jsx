@@ -1,7 +1,7 @@
-import LoginContainer from "@/pages/login/sections/loginContainer";
+import LoginContainer from '@/pages/login/sections/loginContainer';
 
 const Login = () => {
-  return <LoginContainer/>;
-}
+  return <LoginContainer />;
+};
 
 export default Login;

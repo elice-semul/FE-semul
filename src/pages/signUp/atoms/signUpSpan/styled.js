@@ -4,7 +4,7 @@ export const StyledSignUpSpan = styled.span`
   text-align: center;
   margin-left: 10px;
   margin-bottom: 10px;
-  color: ${({ color }) => (color || 'red') };;
+  color: ${({ color }) => color || 'red'};
   font-size: small;
   display: inline-block;
 `;

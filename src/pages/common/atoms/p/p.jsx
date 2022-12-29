@@ -1,18 +1,18 @@
-import StyledP from "./styled"
+import StyledP from './styled';
 
 const P = ({ children, margin, padding, display, lineHeight, fontSize, color }) => {
-    return (
-        <StyledP
-        {...{ margin }}
-        {...{ padding }}
-        {...{ display }}
-        {...{ fontSize }}
-        {...{ color }}
-        {...{ lineHeight }}
-        >
-        {children}
-        </StyledP>
-    );
-}
+  return (
+    <StyledP
+      {...{ margin }}
+      {...{ padding }}
+      {...{ display }}
+      {...{ fontSize }}
+      {...{ color }}
+      {...{ lineHeight }}
+    >
+      {children}
+    </StyledP>
+  );
+};
 
-export default P
+export default P;

@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-import { theme } from '@/styles/theme'
+import { theme } from '@/styles/theme';
 
 export const StyledSignUpInput = styled.input`
-  background-color: ${ theme.colors.gray100 };
+  background-color: ${theme.colors.gray100};
   width: 100%;
   height: 40px;
   border: 0;
@@ -15,8 +15,8 @@ export const StyledSignUpInput = styled.input`
 
 export const StyledSignUpLabel = styled.label`
   margin: 1rem 2rem;
-  padding: ${({ padding })=> padding};
-  display:block;
+  padding: ${({ padding }) => padding};
+  display: block;
   font-size: 1.6rem;
   color: ${({ color }) => color};
   line-height: ${({ lineHeight }) => lineHeight};
