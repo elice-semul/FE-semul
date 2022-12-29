@@ -1,26 +1,18 @@
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
-import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 import FlexedSpan from '../atoms/flexedSpan';
+import useGetConnenctOrder from '../hooks/useGetConnectOrder';
 
-import { Flex } from '@/pages/common/atoms/index';
-import * as API from '@/utils/api';
+import { Flex, Loading } from '@/pages/common/atoms/index';
+
 const Infomation = () => {
-  const location = useLocation();
+  const { order, result } = useGetConnenctOrder();
 
-  const {
-    status,
-    data: completeOrder,
-    error,
-  } = useQuery(['completeOrder'], API.getConnectOrder(location.state.id));
-
-  if (status === 'loading') {
-    return <div>loading</div>;
+  if (result.status === 'loading') {
+    return <Loading />;
   }
 
-  if (error) {
+  if (result.error) {
     return <div>error</div>;
   }
 
@@ -29,22 +21,20 @@ const Infomation = () => {
       <DivisionLine />
       <FlexedSpan
         infomationTitle="결제금액"
-        infomationContent={`${completeOrder.price}원`}
+        infomationContent={`${order?.price}원`}
         contentColor="blue"
         contentSize="17px"
         contentWeight="bold"
       />
-      <FlexedSpan infomationTitle="결제일시" infomationContent={completeOrder.data.createdAt} />
+      <FlexedSpan infomationTitle="결제일시" infomationContent={order?.paymentDate} />
       <DivisionLine />
-      <FlexedSpan infomationTitle="배송주소" infomationContent={completeOrder.data.address.jibun} />
-      <FlexedSpan
-        infomationTitle="희망세탁일"
-        infomationContent={completeOrder.data.wishLaundryDateTime}
-      />
+      <FlexedSpan infomationTitle="배송주소" infomationContent={order?.address} />
+      <FlexedSpan infomationTitle="수거일" infomationContent={order?.pickupDate} />
+      <FlexedSpan infomationTitle="희망세탁일" infomationContent={order?.wishLaundryDate} />
       <FlexedSpan
         flexDirection="column"
         infomationTitle="유의사항"
-        infomationContent={completeOrder.data.notice}
+        infomationContent={order?.notice}
       />
     </Flex>
   );
