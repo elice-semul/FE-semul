@@ -12,7 +12,7 @@ const HomeBanner = () => {
   return (
     <StyledHomeBannerWrap>
       <StyledHomeBannerContainer>
-        <StyledHomeBannerImage src="src/assets/images/homeBtnImage-2.jpg" />
+        <StyledHomeBannerImage src="https://semul.s3.ap-northeast-2.amazonaws.com/homeBtnImage-2.jpg" />
         <StyledHomeBannerOverlay />
         <StyledHomeBannerTextContainer>
           <StyledHomeBannerTitle>새물 Grand Open 이벤트</StyledHomeBannerTitle>

@@ -21,7 +21,7 @@ const Infomation = () => {
       <DivisionLine />
       <FlexedSpan
         infomationTitle="결제금액"
-        infomationContent={`${order?.price}원`}
+        infomationContent={`${order?.price.toLocaleString('ko-kr')}원`}
         contentColor="blue"
         contentSize="17px"
         contentWeight="bold"

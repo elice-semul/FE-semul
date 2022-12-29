@@ -33,7 +33,7 @@ const OrderCard = ({ keyDate, orderNumber, status, laundry, laundryDate, totalPr
         }
       />
       <FlexedSpan title="세탁기간" content={laundryDate} />
-      <FlexedSpan title="세탁비용" content={totalPrice} />
+      <FlexedSpan title="세탁비용" content={totalPrice.toLocaleString('ko-kr')} />
     </Container>
   );
 };
