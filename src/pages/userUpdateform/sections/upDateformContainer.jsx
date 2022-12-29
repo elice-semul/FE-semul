@@ -31,15 +31,12 @@ const UpDateFormContainer = ({ userState }) => {
   const [daumApi, setDaumApi]  = useState(false);
   const [updateCheck, setUpdateCheck] = useState(false);
 
-
-
   const handleConfirmClick = () => {
     setIsModalShowing(false);
     if(updateCheck){
-      navigate('/');
+      navigate('/myPage');
     }
   };
-
 
   const setValue = () => {
     setValues({
