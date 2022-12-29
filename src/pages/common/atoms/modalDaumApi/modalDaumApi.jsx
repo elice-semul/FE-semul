@@ -1,8 +1,9 @@
 import DaumPostcode from 'react-daum-postcode';
 
-const ModalDaumApi = ({ setAddress, setDaumApi }) => {
+const ModalDaumApi = ({ setAddress, setDaumApi, setJibun }) => {
   const onCompletePost = (data) => {
     setAddress(data.address);
+    setJibun(data.zonecode);
     setDaumApi(false);
   };
   const postCodeStyle = {

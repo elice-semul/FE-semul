@@ -41,9 +41,7 @@ const OrderReceipt = ({ order }) => {
           </StyledTextBlock>
         )}
         <StyledReceiptdescription>유의사항</StyledReceiptdescription>
-        <StyledReceiptdescription>
-          신발은 한 켤레가 맞아요.. 빨리 배송해주세요.. 다우니 많이 써주세요.. :)
-        </StyledReceiptdescription>
+        <StyledReceiptdescription>{order.notice}</StyledReceiptdescription>
       </StyledOrderReceiptContainer>
     </>
   );
