@@ -1,18 +1,19 @@
-import StyledLabel from "./styled"
+import StyledLabel from './styled';
 
 const Label = ({ children, htmlFor, margin, padding, display, lineHeight, fontSize, color }) => {
-    return (
+  return (
     <StyledLabel
-    {...{ htmlFor }}
-    {...{ margin }}
-    {...{ padding }}
-    {...{ display }}
-    {...{ fontSize }}
-    {...{ color }}
-    {...{ lineHeight }}
+      {...{ htmlFor }}
+      {...{ margin }}
+      {...{ padding }}
+      {...{ display }}
+      {...{ fontSize }}
+      {...{ color }}
+      {...{ lineHeight }}
     >
-    {children}
-    </StyledLabel>)
-}
+      {children}
+    </StyledLabel>
+  );
+};
 
-export default Label
+export default Label;

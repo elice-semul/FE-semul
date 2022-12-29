@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-import { theme } from '@/styles/theme'
+import { theme } from '@/styles/theme';
 
 export const StyledUpdateInput = styled.input`
-  background-color: ${ theme.colors.gray100 };
+  background-color: ${theme.colors.gray100};
   width: 100%;
   height: 40px;
-  border: ${({ border }) => (border || 'none') };
+  border: ${({ border }) => border || 'none'};
   &:focus {
     outline: none;
   }
@@ -18,8 +18,8 @@ export const StyledUpdateInput = styled.input`
 
 export const StyledUpdateLabel = styled.label`
   margin: 1rem 2rem;
-  padding: ${({ padding })=> padding};
-  display:block;
+  padding: ${({ padding }) => padding};
+  display: block;
   font-size: 1.6rem;
   color: ${({ color }) => color};
   line-height: ${({ lineHeight }) => lineHeight};

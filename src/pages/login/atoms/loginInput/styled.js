@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { theme } from '@/styles/theme' 
+import { theme } from '@/styles/theme';
 
 export const StyledLoginInput = styled.input`
   background-color: ${theme.colors.background};
@@ -12,7 +12,7 @@ export const StyledLoginInput = styled.input`
   border-bottom: 1px solid ${theme.colors.gray300};
   border-radius: 0;
   margin-bottom: 1.8rem;
-  &:nth-child(2){
+  &:nth-child(2) {
     margin-bottom: 4.8rem;
   }
-`
+`;
