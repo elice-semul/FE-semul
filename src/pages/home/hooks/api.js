@@ -23,11 +23,11 @@ export const getCurrentOrdersApi = async () => {
   }
 };
 
-export const updateUserAddressApi = async ({ updateUser }) => {
+export const updateUserAddressApi = async (address) => {
   try {
     const token = sessionStorage.getItem('Authorization');
     const authInstance = axiosAuthApi(BASE_URL, token);
-    return await authInstance.put('/users', updateUser);
+    return await authInstance.put('/users', address);
   } catch (err) {
     throw new Error(err);
   }

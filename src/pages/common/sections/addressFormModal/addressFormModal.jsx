@@ -22,6 +22,7 @@ const Modal = ({ text, successText, onShow, onConfirm, onSuccess, onCancel, curr
   const [isSuccess, setIsSuccess] = useState(false);
   const [address, setAddress] = useState(currentUser.address.roadAddr);
   const [detailAddress, setDetailAddress] = useState(currentUser.address.detailAddr);
+  const [jibun, setJibun] = useState(currentUser.address.jibun);
   const [daumApi, setDaumApi] = useState(false);
   const { currentUserMutate } = useCurrnetUser();
   const handleModalLayoutClick = () => {
@@ -39,7 +40,7 @@ const Modal = ({ text, successText, onShow, onConfirm, onSuccess, onCancel, curr
 
   const handleConfirmButtonCLick = (event) => {
     event.stopPropagation();
-    currentUserMutate.mutate({ address: { roadAddr: address, detailAddr: detailAddress } });
+    currentUserMutate.mutate({ address: { roadAddr: address, detailAddr: detailAddress, jibun } });
     onConfirm();
     setIsSuccess(true);
   };
@@ -71,7 +72,11 @@ const Modal = ({ text, successText, onShow, onConfirm, onSuccess, onCancel, curr
               </StyledAddressBtn>
               {daumApi && (
                 <div>
-                  <ModalDaumApi setAddress={setAddress} setDaumApi={setDaumApi} />
+                  <ModalDaumApi
+                    setAddress={setAddress}
+                    setDaumApi={setDaumApi}
+                    setJibun={setJibun}
+                  />
                 </div>
               )}
             </StyledInputBlock>
