@@ -29,7 +29,7 @@ export const getLaundryApi = async () => {
   }
 };
 
-export const postOrderApi = async (postObj) => {
+export const postOrderApi = async ({ postObj, totalPrice }) => {
   try {
     const token = sessionStorage.getItem('Authorization');
     if (!token) throw new 'missing token: 권한 오류'();
@@ -37,7 +37,7 @@ export const postOrderApi = async (postObj) => {
     const instance = axiosAuthApi(BASE_URL, token);
     const { data } = await instance.post('/orders', postObj);
 
-    return data;
+    return { data, totalPrice };
   } catch (error) {
     throw new Error(error);
   }
@@ -51,6 +51,23 @@ export const getCurrentUserApi = async () => {
     const instance = axiosAuthApi(BASE_URL, token);
     const { data } = await instance.get('/users');
 
+    return data;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const postMinusMoney = async (money) => {
+  try {
+    const token = sessionStorage.getItem('Authorization');
+    if (!token) throw new 'missing token: 권한 오류'();
+
+    const instance = axiosAuthApi(BASE_URL, token);
+    const postObj = {
+      minusMoney: Number(money),
+    };
+
+    const { data } = await instance.post('/wallets/payment', postObj);
     return data;
   } catch (error) {
     throw new Error(error);

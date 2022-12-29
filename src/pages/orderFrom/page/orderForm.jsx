@@ -136,8 +136,11 @@ const OrderForm = () => {
     } else if (totalPrice > user.money) {
       setErrorText(ERROR_TEXT.MONEY);
       setIsModalShowing(true);
+    } else if (postObj.products.length === 0) {
+      setErrorText(ERROR_TEXT.EMPTY);
+      setIsModalShowing(true);
     } else {
-      mutation.mutate(postObj);
+      mutation.mutate({ postObj, totalPrice });
     }
   };
 

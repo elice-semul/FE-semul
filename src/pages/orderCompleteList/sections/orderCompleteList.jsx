@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import Empty from '../atoms/empty';
 import OrderCard from './orderCard';
 
 import { Container, Span } from '@/pages/common/atoms/index';
@@ -10,12 +11,12 @@ const OrderCompleteList = ({ completeOrders }) => {
     <StyledContainer radius="20px" shadow="default" height="auto">
       <Container padding="5%">
         <Span fontSize="16px" fontWeight="bold">
-          총 {completeOrders.length}개의 이용내역
+          총 {completeOrders.length}건의 이용내역
         </Span>
       </Container>
-      <Container margin="20px">
+      <Container padding="0 5%">
         {completeOrders.length === 0 ? (
-          <Container>텅</Container>
+          <Empty />
         ) : (
           completeOrders.map((order) => {
             return (

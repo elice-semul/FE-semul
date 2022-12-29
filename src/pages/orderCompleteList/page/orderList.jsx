@@ -1,54 +1,25 @@
-import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 
 import Toggle from '../atoms/toggle';
+import useGetAllOrder from '../hooks/useGetAllOrder';
 import OrderCompleteList from '../sections/orderCompleteList';
 import OrderCurrentList from '../sections/orderCurrentList';
 
 import { Container, Loading, Span } from '@/pages/common/atoms/index';
-import * as API from '@/utils/api';
-
 const OrderList = () => {
   const [isCurrent, setIsCurrent] = useState('이용내역');
-  const [complete, setComplete] = useState([]);
-  const [current, setCurrent] = useState([]);
 
-  const { status, error } = useQuery(['completeOrders'], API.getCompleteOrders, {
-    onSuccess: (data) => {
-      const tempComplete = data
-        .filter((value) => value.status === 'COMPLETE')
-        .map((value) => {
-          const totalPrice = value.orderProducts.reduce((acc, cur) => {
-            acc += cur.price;
-            return acc;
-          }, 0);
-          return { ...value, totalPrice };
-        });
-
-      const tempCurrnet = data
-        .filter((value) => value.status !== 'COMPLETE')
-        .map((value) => {
-          const totalPrice = value.orderProducts.reduce((acc, cur) => {
-            acc += cur.price;
-            return acc;
-          }, 0);
-          return { ...value, totalPrice };
-        });
-
-      setComplete(tempComplete);
-      setCurrent(tempCurrnet);
-    },
-  });
+  const { result, complete, current } = useGetAllOrder();
 
   const handleToggleBtnClick = (toggle) => {
     setIsCurrent(toggle);
   };
 
-  if (status === 'loading') {
+  if (result.status === 'loading') {
     return <Loading />;
   }
 
-  if (error) {
+  if (result.error) {
     return <Container>error</Container>;
   }
 

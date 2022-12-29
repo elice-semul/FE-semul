@@ -2,15 +2,20 @@ import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import * as API from '@/utils/api';
+import * as API from './api';
+
 import * as Date from '@/utils/dateFormating';
 
 const useGetConnenctOrder = () => {
   const [order, setOrder] = useState(null);
   const location = useLocation();
+  const result = useQuery(['connectOrder'], () => API.getConnectOrder(location.state.id), {
+    onSuccess: (data) => {
+      const price = data.orderProducts.reduce((acc, cur) => {
+        const temp = cur.price * cur.qty;
+        return acc + temp;
+      }, 0);
 
-  const result = useQuery(['connectOrder'], API.getConnectOrder(location.state.id), {
-    onSuccess: ({ data, price }) => {
       const obj = {
         id: data.id,
         paymentDate: Date.dateFormatCommon(data.createdAt),
@@ -21,6 +26,10 @@ const useGetConnenctOrder = () => {
         notice: data.notice,
       };
       setOrder(obj);
+    },
+    onError: (error) => {
+      // eslint-disable-next-line no-alert
+      alert(error);
     },
   });
   return { order, result };

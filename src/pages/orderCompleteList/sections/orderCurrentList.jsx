@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import Empty from '../atoms/empty';
 import OrderCard from './orderCard';
 
 import { Container, Span } from '@/pages/common/atoms/index';
@@ -12,9 +13,9 @@ const OrderCurrentList = ({ currentOrders }) => {
           총 {currentOrders.length}건의 이용내역
         </Span>
       </Container>
-      <Container margin="20px">
+      <Container padding="0 5%">
         {currentOrders.length === 0 ? (
-          <Container>텅</Container>
+          <Empty />
         ) : (
           currentOrders.map((order) => {
             return (
