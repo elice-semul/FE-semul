@@ -16,7 +16,7 @@ import {
 import { Form } from '@/pages/common/atoms';
 import DaumApi from '@/pages/signup/page/daumApi';
 import UpdateInput from '@/pages/userUpdateform/atoms/updateInput/updateInput';
-import SignUpSpan from '@/pages/signup/atoms/signUpSpan/signUpSpan';
+import SignUpSpan from '@/pages/signUp/atoms/signUpSpan/signUpSpan';
 import { theme } from '@/styles/theme';
 
 const BASE_URL = import.meta.env.VITE_BASE;
