@@ -15,5 +15,6 @@ export const StyledHomeHeaderText = styled.div`
   font-size: 16px;
   margin-right: 10px;
   color: ${(props) => props.theme.colors.primary};
-  font-weight: 700;
+  font-weight: 500;
+  line-height: 20px;
 `;

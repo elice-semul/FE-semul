@@ -4,8 +4,9 @@ export const StyledHomeBannerWrap = styled.div`
 `;
 
 export const StyledHomeBannerContainer = styled.div`
-  height: 10vh;
+  height: 220px;
   position: relative;
+  margin-top: 5rem;
 `;
 
 export const StyledHomeBannerImage = styled.img`
@@ -15,6 +16,7 @@ export const StyledHomeBannerImage = styled.img`
   left: 0;
   top: 0;
   object-fit: cover;
+  opacity:0.8;
 `;
 
 export const StyledHomeBannerOverlay = styled.div`
@@ -41,10 +43,10 @@ export const StyledHomeBannerTextContainer = styled.div`
 `;
 
 export const StyledHomeBannerTitle = styled.h1`
-  font-size: 25px;
+  font-size: 3.4rem;
   font-weight: 700;
 `;
 
 export const StyledHomeBannerDescription = styled.p`
-  font-size: 20px;
+  font-size: 2.8rem;
 `;

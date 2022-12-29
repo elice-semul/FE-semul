@@ -5,6 +5,7 @@ import styled, { css } from 'styled-components';
 import appBackground from '@/assets/images/appBackground.png';
 import { Footer } from '@/pages/common/components';
 import { Header } from '@/pages/common/sections';
+import "./styles/fonts/font.css";
 
 const Wrapper = styled.div`
   position: relative;

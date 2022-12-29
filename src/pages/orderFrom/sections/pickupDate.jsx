@@ -28,7 +28,7 @@ const PickupDate = ({ register, registerName, selectRegister, selectRegisterName
 
 const StyledSelect = styled(Select)`
   border: none;
-  font-size: 20px;
+  font-size: 1.6rem;
   font-weight: bold;
 `;
 

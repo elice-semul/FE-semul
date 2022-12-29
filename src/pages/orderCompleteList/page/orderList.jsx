@@ -53,7 +53,7 @@ const OrderList = () => {
   }
 
   return (
-    <Container margin="0 auto" width="100%" height="100%">
+    <Container margin="0 auto" padding="2rem" width="100%" height="100%">
       <Span fontSize="32px" fontWeight="bold">
         세물님의 세탁 기록
       </Span>
