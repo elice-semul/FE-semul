@@ -152,7 +152,7 @@ const OrderForm = () => {
   return (
     <Container>
       <Header>세탁신청</Header>
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <Form margin='2rem' onSubmit={handleSubmit(onSubmit)}>
         <OrderHeader />
         <PickupDate
           register={register}

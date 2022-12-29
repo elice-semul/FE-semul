@@ -13,6 +13,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   * {
+    font-family: 'SUIT', sans-serif !important;
     box-sizing: border-box;
   }
 `;

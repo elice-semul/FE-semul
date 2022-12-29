@@ -8,11 +8,12 @@ const SubmitBtn = () => {
       backGroundColor="#094067"
       color="#FFFFFF"
       width="100%"
-      height="80px"
+      height="50px"
       radius="default"
-      fontSize="36px"
-      fontWeight="bold"
+      fontSize="2.8rem"
+      fontWeight="500"
       type="submit"
+      padding="0.5rem"
     >
       신청하기
     </Button>

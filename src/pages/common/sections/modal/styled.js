@@ -42,7 +42,7 @@ export const StyledContentContainer = styled.div`
 
 export const StyledTitle = styled.h4`
   font-size: 2.4rem;
-  font-weight: 600;
+  font-weight: 500;
 `;
 
 export const StyledButtonContainer = styled.div`
