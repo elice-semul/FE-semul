@@ -1,14 +1,19 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 import * as API from './api';
 
 const usePostOrder = () => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
   const mutation = useMutation(['postOrder'], API.postOrderApi, {
-    onSuccess: (data) => {
-      navigate('complete', {
-        state: { id: data.id },
+    onSuccess: async ({ data, totalPrice }) => {
+      await API.postMinusMoney(totalPrice).then(() => {
+        queryClient.invalidateQueries('wallet');
+        navigate('complete', {
+          state: { id: data.id },
+        });
       });
     },
     onError: (error) => {

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AiOutlinePlus } from 'react-icons/ai';
+import { AiOutlineCheck } from 'react-icons/ai';
 import styled from 'styled-components';
 
 import LabeledInput from '../atoms/labeledInput';
@@ -54,7 +54,7 @@ const LaundrySpec = ({
           height="40px"
           padding="0px 4px 4px 0px"
         >
-          <AiOutlinePlus size="24" />
+          <AiOutlineCheck size="24" />
         </Button>
       </StyledBtnContainer>
     </Flex>
