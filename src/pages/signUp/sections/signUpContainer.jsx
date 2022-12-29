@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import SignUpInput from '../atoms/SignUpInput/signUpInput';
+import SignUpInput from '../atoms/signUpInput/signUpInput';
 import DaumApi from '../page/daumApi';
 import {
   StyledSignUpButton,
