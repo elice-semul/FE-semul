@@ -9,9 +9,8 @@ import {
 const WashBlock = ({ id, name, isCompleted, qty }) => {
   return (
     <StyledWashBlockContainer>
-      <StyledWashImage src="../src/assets/images/clothThumbnail-1.jpeg" />
+      <StyledWashImage src="https://semul.s3.ap-northeast-2.amazonaws.com/clothThumbnail-1.jpeg" />
       <StyledWashBlockTextContainer>
-        {/* <StyledWashIdText>빨래 분류: {name}</StyledWashIdText> */}
         <StyledWashNameText>
           {name} {qty}개
         </StyledWashNameText>

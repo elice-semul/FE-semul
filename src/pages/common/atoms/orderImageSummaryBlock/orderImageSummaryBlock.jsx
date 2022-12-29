@@ -25,7 +25,7 @@ const OrderImageSummaryBlock = ({ orderId, products }) => {
           예상 금액: {calculateEstimatedPrice(products)}원
         </StyledOrderImageSummaryPrice>
       </StyledOrderImageSummaryTextContainer>
-      <StyledOrderSummaryImage src="src/assets/images/clothThumbnail-1.jpeg" />
+      <StyledOrderSummaryImage src="https://semul.s3.ap-northeast-2.amazonaws.com/clothThumbnail-1.jpeg" />
     </StyledOrderImageSummaryContainer>
   );
 };
