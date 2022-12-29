@@ -8,7 +8,7 @@ import OrderDetail from './orderDetail/orderDetail';
 import OrderForm from './orderFrom/page/orderForm';
 import Price from './price/page/price';
 import SignUp from './signUp/page/signUp';
-import UserUpdateForm from './userUpdateform/page/UserUpDateForm';
+import UserUpdateForm from './userUpdateform/page/userUpDateForm';
 import Wallet from './wallet/page/wallet';
 
 export {
