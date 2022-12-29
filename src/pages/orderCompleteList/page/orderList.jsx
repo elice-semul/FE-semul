@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import Toggle from '../atoms/toggle';
 import OrderCompleteList from '../sections/orderCompleteList';
